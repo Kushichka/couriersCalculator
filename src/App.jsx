@@ -1,10 +1,10 @@
 import { useCallback, useState } from 'react';
-import { Flex, Typography } from 'antd';
+import { Card, Flex } from 'antd';
 
 import { FormCard } from './components/FormCard';
+import { ResultTable } from './components/ResultTable';
 
 import './App.css'
-import { ResultTable } from './components/ResultTable';
 
 function App() {
     const [suitableCouriers, setSuitableCouriers] = useState([]);
@@ -14,21 +14,28 @@ function App() {
             {
                 key: index,
                 courier: item.name,
-                price: item.price
+                price: `${item.price} ${item.currency}`,
+                type: item.type
             }
         )));
     }, []);
 
     return (
-        <Flex vertical gap={20}>
-            <Typography.Title style={{ color: '#fff' }}>
-                SASKA Kalkulkator Wagi
-            </Typography.Title>
-
-            <FormCard changeSuitableCouriers={changeSuitableCouriers} />
-
-            <ResultTable data={suitableCouriers} />
-        </Flex>
+        <Card
+            title={<span style={{ color: '#fff' }}>Paczkulator</span>}
+            style={{
+                // width: '968px',
+                textAlign: 'center',
+                /* // overflow: 'auto', */
+                boxShadow: '0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22)'}} 
+        >
+            <Flex vertical>
+                <Flex gap={20} wrap='wrap' justify='center'>
+                    <FormCard changeSuitableCouriers={changeSuitableCouriers} />
+                    <ResultTable data={suitableCouriers} />
+                </Flex>
+            </Flex>
+        </Card>
     )
 }
 
