@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Card, Flex, InputNumber } from "antd";
 import PropTypes from 'prop-types';
 
-import { couriers } from '../../API/db';
+import { data } from '../../API/db';
 
 const inputStyles = {
     size: 'large',
@@ -22,9 +22,9 @@ export const FormCard = ({ changeSuitableCouriers }) => {
 
     const inputsData = [
         { unit: 'kg', minValue: 0, size: inputStyles.size, prefix: '', placeholder: 'Waga', onChange: weightHandler, value: weight, style: inputStyles.width },
-        { unit: 'cm', minValue: 0, size: inputStyles.size, prefix: 'a', placeholder: 'Długość', onChange: lengthHandler, value: length, style: inputStyles.width },
-        { unit: 'cm', minValue: 0, size: inputStyles.size, prefix: 'b', placeholder: 'Szerokość', onChange: widthHandler, value: width, style: inputStyles.width },
-        { unit: 'cm', minValue: 0, size: inputStyles.size, prefix: 'c', placeholder: 'Wysokość', onChange: heightHandler, value: height, style: inputStyles.width }
+        { unit: 'cm', minValue: 0, size: inputStyles.size, prefix: 'A', placeholder: 'Długość', onChange: lengthHandler, value: length, style: inputStyles.width },
+        { unit: 'cm', minValue: 0, size: inputStyles.size, prefix: 'B', placeholder: 'Szerokość', onChange: widthHandler, value: width, style: inputStyles.width },
+        { unit: 'cm', minValue: 0, size: inputStyles.size, prefix: 'C', placeholder: 'Wysokość', onChange: heightHandler, value: height, style: inputStyles.width }
     ];
 
     const inputs = inputsData.map(item => (
@@ -33,22 +33,26 @@ export const FormCard = ({ changeSuitableCouriers }) => {
             addonBefore={item.prefix}
             addonAfter={item.unit}
             min={item.minValue}
+            maxLength={4}
             size={item.size}
             placeholder={item.placeholder}
             onChange={item.onChange}
             value={item.value}
             style={item.style}
-            // status={typeof item.value === 'number' ? '' : 'error'}
         />
     ));
 
     useEffect(() => {
         const calculateSuitableCouriers = () => {
-            const suitable = couriers.filter(courier => {
-                return courier.requirements(weight, length, width, height);
+            const suitable = data.filter(courier => {
+                return courier.requirements.every(req => {
+                    return req.formula({w: weight, a: length, b: width, c: height});
+                });
             });
 
-            changeSuitableCouriers(suitable);
+            if(weight && length && width && height) {
+                changeSuitableCouriers(suitable);
+            }
         };
 
         calculateSuitableCouriers();

@@ -10,7 +10,6 @@ export const ResultTable = ({ data }) => {
         >
             <Table.Column title={<span style={{fontSize: '1rem'}}>Kurier</span>} dataIndex='courier' key='courier' />
             <Table.Column title='Cena' dataIndex='price' key='price' />
-            <Table.Column title='Typ' dataIndex='type' key='type' />
         </Table>
     )
 };

@@ -14,8 +14,7 @@ function App() {
             {
                 key: index,
                 courier: item.name,
-                price: `${item.price} ${item.currency}`,
-                type: item.type
+                price: `${item.price} zł`,
             }
         )));
     }, []);
@@ -26,7 +25,6 @@ function App() {
             style={{
                 // width: '968px',
                 textAlign: 'center',
-                /* // overflow: 'auto', */
                 boxShadow: '0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22)'}} 
         >
             <Flex vertical>
