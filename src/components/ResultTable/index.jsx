@@ -1,16 +1,33 @@
-import { Table } from "antd";
+import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
 import PropTypes from 'prop-types';
 
 export const ResultTable = ({ data }) => {
-    return (
-        <Table 
-            dataSource={data} 
-            pagination={{ position: ["none", "none"] }}
-            style={{flex: '1 1 0', minWidth: 'calc(375px - (32px * 2) - (24px * 2))'}}
+    const items = data.map((item) => (
+        <TableRow
+            key={item.courier}
+            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
         >
-            <Table.Column title={<span style={{fontSize: '1rem'}}>Kurier</span>} dataIndex='courier' key='courier' />
-            <Table.Column title='Cena' dataIndex='price' key='price' />
-        </Table>
+            <TableCell component="th" scope="row">
+                {item.courier}
+            </TableCell>
+            <TableCell align="right">{item.price}</TableCell>
+        </TableRow>
+    ));
+
+    return (
+        <TableContainer component={Paper}>
+            <Table sx={{ minWidth: 300 }}>
+                <TableHead>
+                    <TableRow>
+                        <TableCell>Kurier</TableCell>
+                        <TableCell align="right">Cena&nbsp;(zł)</TableCell>
+                    </TableRow>
+                </TableHead>
+                <TableBody>
+                    {items}
+                </TableBody>
+            </Table>
+        </TableContainer>
     )
 };
 

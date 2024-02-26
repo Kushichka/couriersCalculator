@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react';
-import { Card, Flex } from 'antd';
+import { Box, Container, Paper, Stack, Typography } from '@mui/material';
 
 import { FormCard } from './components/FormCard';
 import { ResultTable } from './components/ResultTable';
@@ -20,20 +20,57 @@ function App() {
     }, []);
 
     return (
-        <Card
-            title={<span style={{ color: '#fff' }}>Paczkulator</span>}
-            style={{
-                // width: '968px',
-                textAlign: 'center',
-                boxShadow: '0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22)'}} 
+        <Container
+            sx={{
+                py: {
+                    xs: 1,
+                    sm: 2,
+                    md: 5
+                }
+            }}
         >
-            <Flex vertical>
-                <Flex gap={20} wrap='wrap' justify='center'>
-                    <FormCard changeSuitableCouriers={changeSuitableCouriers} />
-                    <ResultTable data={suitableCouriers} />
-                </Flex>
-            </Flex>
-        </Card>
+            <Box
+                width={{xs: 'auto', sm: 500, md: 700}}
+            >
+                <Paper elevation={3}>
+                    <Stack
+                        direction='column'
+                        justifyContent='center'
+                        useFlexGap
+                        spacing={{sx: 0, md: 4}}
+                    >
+                        <Box
+                            textAlign='center'
+                            bgcolor='#000'
+                            color='#fff'
+                        >
+                            <Typography variant='h5' padding={1}>
+                                Paczkulator
+                            </Typography>
+                        </Box>
+
+                        <Stack
+                            direction={{sm: 'column', md: 'row'}}
+                            spacing={{sm: 2, md: 5}}
+                            sx={{
+                                px: {
+                                    sm: 2,
+                                    md: 5
+                                },
+                                pb: {
+                                    sm: 2,
+                                    md: 5
+                                }
+                            }}
+                        >
+                            <FormCard changeSuitableCouriers={changeSuitableCouriers} />
+                            <ResultTable data={suitableCouriers} />
+                        </Stack>
+                    </Stack>
+
+                </Paper>
+            </Box>
+        </Container>
     )
 }
 

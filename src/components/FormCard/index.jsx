@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { Card, Flex, InputNumber } from "antd";
+import { InputAdornment, OutlinedInput, Paper, Stack, Typography } from "@mui/material";
 import PropTypes from 'prop-types';
 
 import { data } from '../../API/db';
+import { inputHandler } from "../../utils/inputHandler";
 
 const inputStyles = {
     size: 'large',
@@ -10,35 +11,29 @@ const inputStyles = {
 };
 
 export const FormCard = ({ changeSuitableCouriers }) => {
-    const [weight, setWeight] = useState(null);
-    const [length, setLength] = useState(null);
-    const [width, setWidth] = useState(null);
-    const [height, setHeight] = useState(null);
-
-    const weightHandler = value => setWeight(value);
-    const lengthHandler = value => setLength(value);
-    const widthHandler = value => setWidth(value);
-    const heightHandler = value => setHeight(value);
+    const [weight, setWeight] = useState('');
+    const [length, setLength] = useState('');
+    const [width, setWidth] = useState('');
+    const [height, setHeight] = useState('');
 
     const inputsData = [
-        { unit: 'kg', minValue: 0, size: inputStyles.size, prefix: '', placeholder: 'Waga', onChange: weightHandler, value: weight, style: inputStyles.width },
-        { unit: 'cm', minValue: 0, size: inputStyles.size, prefix: 'A', placeholder: 'Długość', onChange: lengthHandler, value: length, style: inputStyles.width },
-        { unit: 'cm', minValue: 0, size: inputStyles.size, prefix: 'B', placeholder: 'Szerokość', onChange: widthHandler, value: width, style: inputStyles.width },
-        { unit: 'cm', minValue: 0, size: inputStyles.size, prefix: 'C', placeholder: 'Wysokość', onChange: heightHandler, value: height, style: inputStyles.width }
+        { unit: 'kg', minValue: 0, size: inputStyles.size, prefix: '', placeholder: 'Waga', onChange: (event) => inputHandler(event.target.value, setWeight), value: weight, style: inputStyles.width },
+        { unit: 'cm', minValue: 0, size: inputStyles.size, prefix: 'A', placeholder: 'Długość', onChange: (event) => inputHandler(event.target.value, setLength), value: length, style: inputStyles.width },
+        { unit: 'cm', minValue: 0, size: inputStyles.size, prefix: 'B', placeholder: 'Szerokość', onChange: (event) => inputHandler(event.target.value, setWidth), value: width, style: inputStyles.width },
+        { unit: 'cm', minValue: 0, size: inputStyles.size, prefix: 'C', placeholder: 'Wysokość', onChange: (event) => inputHandler(event.target.value, setHeight), value: height, style: inputStyles.width }
     ];
 
     const inputs = inputsData.map(item => (
-        <InputNumber
+        <OutlinedInput
             key={item.placeholder}
-            addonBefore={item.prefix}
-            addonAfter={item.unit}
-            min={item.minValue}
-            maxLength={4}
-            size={item.size}
             placeholder={item.placeholder}
+            variant="outlined" 
             onChange={item.onChange}
             value={item.value}
-            style={item.style}
+            endAdornment={<InputAdornment position="end">{item.unit}</InputAdornment>}
+            sx={{ fontSize: '1.2rem', width: '150px' }}
+            fullWidth
+            size="small"
         />
     ));
 
@@ -59,15 +54,25 @@ export const FormCard = ({ changeSuitableCouriers }) => {
     }, [weight, length, width, height, changeSuitableCouriers]);
 
     return (
-        <Card
-            title='Wymiary'
-            type="inner"
-            style={{textAlign: 'center'}}
-        >
-            <Flex vertical gap={20}>
+        <Paper variant="outlined" sx={{p: 2}}>
+            <Typography 
+                fontWeight={500}
+                textAlign='center'  
+                paddingBottom={2}  
+            >
+                Wymiary
+            </Typography>
+
+            <Stack
+                direction={{sm: 'row', md: 'column'}}
+                flexWrap={{sm: 'wrap', md: 'nowrap'}}
+                alignItems='center'
+                justifyContent='center'
+                gap={2}
+            >
                 {inputs}
-            </Flex>
-        </Card>
+            </Stack>
+        </Paper>
     )
 };
 
