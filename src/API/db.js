@@ -5,10 +5,12 @@ import { fedex } from "./couriers/fedex";
 import { orlen } from "./couriers/orlen";
 import { pocztex } from "./couriers/pocztex";
 import { ups } from "./couriers/ups";
+import { gls } from "./couriers/gls";
 
 export const data = [
     ...inpost,
     ...dpd,
+    ...gls,
     ...dhl,
     ...fedex,
     ...orlen,

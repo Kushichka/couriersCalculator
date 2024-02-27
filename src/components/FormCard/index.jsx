@@ -45,6 +45,8 @@ export const FormCard = ({ changeSuitableCouriers }) => {
 
     useEffect(() => {
         const calculateSuitableCouriers = () => {
+            // data[0].price = 13.99;
+            // console.log(data[0].price);
             const suitable = data.filter(courier => {
                 return courier.requirements.every(req => {
                     return req.formula({

@@ -3,9 +3,9 @@ import { Box, Container, Paper, Stack, Typography } from '@mui/material';
 
 import { FormCard } from './components/FormCard';
 import { ResultTable } from './components/ResultTable';
+import { createCouriersList } from './utils/createCouriersList';
 
 import './App.css'
-import { createCouriersList } from './utils/createCouriersList';
 
 function App() {
     const [suitableCouriers, setSuitableCouriers] = useState([]);

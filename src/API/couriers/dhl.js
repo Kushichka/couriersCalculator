@@ -23,7 +23,7 @@ export const dhl = [
             },
             {
                 formula: ({ a, b, c }) => {
-                    return a + b + c <= 300;
+                    return a + b + c <= 240;
                 },
                 description: 'Suma boków < 300'
             }
