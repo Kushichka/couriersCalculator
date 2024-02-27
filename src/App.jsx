@@ -5,39 +5,27 @@ import { FormCard } from './components/FormCard';
 import { ResultTable } from './components/ResultTable';
 
 import './App.css'
+import { createCouriersList } from './utils/createCouriersList';
 
 function App() {
     const [suitableCouriers, setSuitableCouriers] = useState([]);
 
     const changeSuitableCouriers = useCallback((suitable) => {
-        setSuitableCouriers(suitable.map((item, index) => (
-            {
-                key: index,
-                courier: item.name,
-                price: `${item.price} zł`,
-            }
-        )));
+        const couriersList = createCouriersList(suitable);
+        setSuitableCouriers(couriersList);
     }, []);
 
     return (
         <Container
-            sx={{
-                py: {
-                    xs: 1,
-                    sm: 2,
-                    md: 5
-                }
-            }}
+            sx={{ py: { xs: 1, sm: 2, md: 5 } }}
         >
-            <Box
-                width={{xs: 'auto', sm: 500, md: 700}}
-            >
+            <Box width={{ xs: 'auto', sm: 500, md: 700 }}>
                 <Paper elevation={3}>
                     <Stack
                         direction='column'
                         justifyContent='center'
                         useFlexGap
-                        spacing={{sx: 0, md: 4}}
+                        spacing={{ sx: 0, md: 4 }}
                     >
                         <Box
                             textAlign='center'
@@ -50,17 +38,11 @@ function App() {
                         </Box>
 
                         <Stack
-                            direction={{sm: 'column', md: 'row'}}
-                            spacing={{sm: 2, md: 5}}
+                            direction={{ sm: 'column', md: 'row' }}
+                            spacing={{ sm: 2, md: 5 }}
                             sx={{
-                                px: {
-                                    sm: 2,
-                                    md: 5
-                                },
-                                pb: {
-                                    sm: 2,
-                                    md: 5
-                                }
+                                px: { sm: 2, md: 5 },
+                                pb: { sm: 2, md: 5 }
                             }}
                         >
                             <FormCard changeSuitableCouriers={changeSuitableCouriers} />

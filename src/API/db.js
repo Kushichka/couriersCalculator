@@ -3,7 +3,7 @@ import { anotherSides } from '../utils/anotherSides';
 
 export const data = [
     {
-        name: 'DPD paczka',
+        name: 'DPD kurier',
         price: '12',
         requirements: [
             {
@@ -21,7 +21,7 @@ export const data = [
         ]
     },
     {
-        name: 'DPD punk odbioru (Pickup)',
+        name: 'DPD punkt odbioru (Pickup)',
         price: '9',
         requirements: [
             {
@@ -56,7 +56,7 @@ export const data = [
             {
                 formula: ({ a, b, c }) => {
                     const shortSides = anotherSides([a, b, c]);
-                    return (shortSides[0] <= 50 && shortSides[1] <= 50) && 
+                    return (shortSides[0] <= 50 && shortSides[1] <= 50) &&
                         (shortSides[0] <= 44 || shortSides[1] <= 44);
                 },
                 description: 'długość 59, szerokość 44, a wysokość 50'
@@ -157,7 +157,7 @@ export const data = [
             {
                 formula: ({ a, b, c }) => {
                     const secondLongesttSides = Math.max(...anotherSides([a, b, c]));
-                    return longestSide([a, b, c]) + secondLongesttSides < 180; 
+                    return longestSide([a, b, c]) + secondLongesttSides < 180;
                 },
                 description: 'Suma dwóch najdłuższych krawędzi < 180'
             }
@@ -178,7 +178,7 @@ export const data = [
             {
                 formula: ({ a, b, c }) => {
                     const shortSides = anotherSides([a, b, c]);
-                    return (shortSides[0] <= 30 && shortSides[1] <= 30) && 
+                    return (shortSides[0] <= 30 && shortSides[1] <= 30) &&
                         (shortSides[0] <= 20 || shortSides[1] <= 20);
                 },
                 description: 'długość 59, szerokość 44, a wysokość 50'
@@ -245,7 +245,7 @@ export const data = [
             {
                 formula: ({ a, b, c }) => {
                     const shortSides = anotherSides([a, b, c]);
-                    return (shortSides[0] <= 38 && shortSides[1] <= 38) && 
+                    return (shortSides[0] <= 38 && shortSides[1] <= 38) &&
                         (shortSides[0] <= 8 || shortSides[1] <= 8);
                 },
                 description: '8 x 38 x 64'
@@ -267,7 +267,7 @@ export const data = [
             {
                 formula: ({ a, b, c }) => {
                     const shortSides = anotherSides([a, b, c]);
-                    return (shortSides[0] <= 38 && shortSides[1] <= 38) && 
+                    return (shortSides[0] <= 38 && shortSides[1] <= 38) &&
                         (shortSides[0] <= 19 || shortSides[1] <= 19);
                 },
                 description: '19 x 38 x 64'
@@ -289,7 +289,7 @@ export const data = [
             {
                 formula: ({ a, b, c }) => {
                     const shortSides = anotherSides([a, b, c]);
-                    return (shortSides[0] <= 41 && shortSides[1] <= 41) && 
+                    return (shortSides[0] <= 41 && shortSides[1] <= 41) &&
                         (shortSides[0] <= 38 || shortSides[1] <= 38);
                 },
                 description: '41 x 38 x 64'
