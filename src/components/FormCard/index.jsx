@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useState } from "react";
-import { InputAdornment, OutlinedInput, Paper, Stack, Typography } from "@mui/material";
+import { Paper, Stack, Typography } from "@mui/material";
 import PropTypes from 'prop-types';
 
-import { data } from '../../API/db';
-import { inputHandler } from "../../utils/inputHandler";
+import { calculateSuitableCouriers } from "../../utils/calculateSuitableCouriers";
+import { InputsList } from "../InputsList/InputsList";
 
 export const FormCard = ({ changeSuitableCouriers }) => {
 
@@ -23,67 +23,34 @@ export const FormCard = ({ changeSuitableCouriers }) => {
         }));
     }, []);
 
-    const inputsData = [
-        { name: 'weight', placeholder: 'Waga', unit: 'kg', value: weight },
-        { name: 'length', placeholder: 'Długość', unit: 'cm', value: length },
-        { name: 'width', placeholder: 'Szerokość', unit: 'cm', value: width },
-        { name: 'height', placeholder: 'Wysokość', unit: 'cm', value: height }
-    ];
-
-    const inputs = inputsData.map(({placeholder, name, unit, value}) => (
-        <OutlinedInput
-            key={name}
-            placeholder={placeholder}
-            onChange={(event) => inputHandler(name, event.target.value, setDimension)}
-            value={value}
-            endAdornment={<InputAdornment position="end">{unit}</InputAdornment>}
-            sx={{ fontSize: '1.2rem', width: '150px' }}
-            fullWidth
-            size="small"
-        />
-    ));
-
     useEffect(() => {
-        const calculateSuitableCouriers = () => {
-            // data[0].price = 13.99;
-            // console.log(data[0].price);
-            const suitable = data.filter(courier => {
-                return courier.requirements.every(req => {
-                    return req.formula({
-                        w: parseFloat(weight), 
-                        a: parseFloat(length), 
-                        b: parseFloat(width), 
-                        c: parseFloat(height)
-                    });
-                });
-            });
-
-            if(weight && length && width && height) {
-                changeSuitableCouriers(suitable);
-            }
-        };
-
-        calculateSuitableCouriers();
+        calculateSuitableCouriers(weight, length, width, height, changeSuitableCouriers);
     }, [weight, length, width, height, changeSuitableCouriers]);
 
     return (
-        <Paper variant="outlined" sx={{p: 2}}>
-            <Typography 
+        <Paper variant="outlined" sx={{ p: 2 }}>
+            <Typography
                 fontWeight={500}
-                textAlign='center'  
-                paddingBottom={2}  
+                textAlign='center'
+                paddingBottom={2}
             >
                 Wymiary
             </Typography>
 
             <Stack
-                direction={{sm: 'row', md: 'column'}}
-                flexWrap={{sm: 'wrap', md: 'nowrap'}}
+                direction={{ sm: 'row', md: 'column' }}
+                flexWrap={{ sm: 'wrap', md: 'nowrap' }}
                 alignItems='center'
                 justifyContent='center'
                 gap={2}
             >
-                {inputs}
+                <InputsList 
+                    weight={weight} 
+                    length={length} 
+                    width={width} 
+                    height={height} 
+                    setDimension={setDimension} 
+                />
             </Stack>
         </Paper>
     )

@@ -6,16 +6,3 @@ body {
   margin: 0;
   display: flex;
 }
-
-.ant-card-type-inner .ant-card-head {
-  background-color: rgba(0, 0, 0, 0.5);
-  color: #fff;
-}
-
-.ant-card-type-inner .ant-card-head-title {
-  font-size: 1rem;
-}
-
-.ant-card-type-inner .ant-card-body {
-  border: 1px solid rgba(0, 0, 0, 0.2);
-}
