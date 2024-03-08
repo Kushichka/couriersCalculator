@@ -1,10 +1,11 @@
 import { anotherSides } from "../../utils/anotherSides";
 import { longestSide } from "../../utils/longestSide";
+import { prices } from "../prices";
 
 export const fedex = [
     {
         name: 'Fedex paczka',
-        price: '25',
+        price: prices.fedex,
         requirements: [
             {
                 formula: ({ w }) => w <= 31.5,

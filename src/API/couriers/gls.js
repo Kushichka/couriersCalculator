@@ -1,10 +1,11 @@
 import { anotherSides } from "../../utils/anotherSides";
 import { longestSide } from "../../utils/longestSide";
+import { prices } from "../prices";
 
 export const gls = [
     {
         name: 'GLS paczka',
-        price: '17',
+        price: prices.gls,
         requirements: [
             {
                 formula: ({ w }) => w <= 31.5,

@@ -1,5 +1,6 @@
 import { anotherSides } from "../../utils/anotherSides";
 import { longestSide } from "../../utils/longestSide";
+import { prices } from "../prices";
 
 export class Courier {
 }
@@ -7,7 +8,7 @@ export class Courier {
 export const ups = [
     {
         name: 'UPS paczka',
-        price: '22',
+        price: prices.ups,
         requirements: [
             {
                 formula: ({ w }) => w <= 31.5,

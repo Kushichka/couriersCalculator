@@ -1,9 +1,10 @@
 import { longestSide } from "../../utils/longestSide";
+import { prices } from "../prices";
 
 export const pocztex = [
     {
         name: 'Pocztex paczka',
-        price: '8',
+        price: prices.pocztex,
         requirements: [
             {
                 formula: ({ w }) => w <= 20,
@@ -21,7 +22,7 @@ export const pocztex = [
     },
     {
         name: 'Pocztex 2XL',
-        price: '22',
+        price: prices.pocztex2Xl,
         requirements: [
             {
                 formula: ({ w }) => w <= 30,

@@ -1,10 +1,11 @@
 import { anotherSides } from "../../utils/anotherSides";
 import { longestSide } from "../../utils/longestSide";
+import { prices } from "../prices";
 
 export const inpost = [
     {
         name: 'InPost paczkomat "A"',
-        price: '11,99',
+        price: prices.inpostA,
         requirements: [
             {
                 formula: ({ w }) => w <= 25,
@@ -26,7 +27,7 @@ export const inpost = [
     },
     {
         name: 'InPost paczkomat "B"',
-        price: '11,99',
+        price: prices.inpostB,
         requirements: [
             {
                 formula: ({ w }) => w <= 25,
@@ -48,7 +49,7 @@ export const inpost = [
     },
     {
         name: 'InPost paczkomat "C"',
-        price: '11,99',
+        price: prices.inpostC,
         requirements: [
             {
                 formula: ({ w }) => w <= 25,
@@ -70,7 +71,7 @@ export const inpost = [
     },
     {
         name: 'InPost kurier',
-        price: '14,99',
+        price: prices.inpostCourier,
         requirements: [
             {
                 formula: ({ w }) => w <= 25,
@@ -88,7 +89,7 @@ export const inpost = [
     },
     {
         name: 'InPost paczka niestandardowa',
-        price: '19,99',
+        price: prices.inpostOversize,
         requirements: [
             {
                 formula: ({ w }) => w <= 25,

@@ -1,10 +1,11 @@
 import { anotherSides } from "../../utils/anotherSides";
 import { longestSide } from "../../utils/longestSide";
+import { prices } from "../prices";
 
 export const dpd = [
     {
         name: 'DPD kurier',
-        price: '12',
+        price: prices.dpdCourier,
         requirements: [
             {
                 formula: ({ w }) => w <= 31.5,
@@ -22,7 +23,7 @@ export const dpd = [
     },
     {
         name: 'DPD punkt odbioru (Pickup)',
-        price: '9',
+        price: prices.dpdPickup,
         requirements: [
             {
                 formula: ({ w }) => w <= 20,
@@ -43,7 +44,7 @@ export const dpd = [
     },
     {
         name: 'DPD Pickup Station',
-        price: '11',
+        price: prices.dpdPickupStation,
         requirements: [
             {
                 formula: ({ w }) => w <= 20,
@@ -65,7 +66,7 @@ export const dpd = [
     },
     {
         name: 'DPD paczka niestandardowa',
-        price: '50',
+        price: prices.dpdOversize,
         requirements: [
             {
                 formula: ({ w }) => w > 31.5 && w <= 50,

@@ -28,7 +28,7 @@ export const FormCard = ({ changeSuitableCouriers }) => {
     }, [weight, length, width, height, changeSuitableCouriers]);
 
     return (
-        <Paper variant="outlined" sx={{ p: 2 }}>
+        <Paper variant="outlined" sx={{ p: 2}}>
             <Typography
                 fontWeight={500}
                 textAlign='center'

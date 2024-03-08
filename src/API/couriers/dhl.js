@@ -1,10 +1,11 @@
 import { anotherSides } from "../../utils/anotherSides";
 import { longestSide } from "../../utils/longestSide";
+import { prices } from "../prices";
 
 export const dhl = [
     {
         name: 'DHL paczka',
-        price: '20',
+        price: prices.dhl,
         requirements: [
             {
                 formula: ({ w }) => w <= 31.5,

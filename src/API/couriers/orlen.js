@@ -1,10 +1,11 @@
 import { anotherSides } from "../../utils/anotherSides";
 import { longestSide } from "../../utils/longestSide";
+import { prices } from "../prices";
 
 export const orlen = [
     {
         name: 'ORLEN paczka',
-        price: '10',
+        price: prices.orlen,
         requirements: [
             {
                 formula: ({ w }) => w <= 20,
