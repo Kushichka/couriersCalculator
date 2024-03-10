@@ -68,39 +68,5 @@ export const inpost = [
                 description: '41 x 38 x 64'
             }
         ]
-    },
-    {
-        name: 'InPost kurier',
-        price: prices.inpostCourier,
-        requirements: [
-            {
-                formula: ({ w }) => w <= 25,
-                description: 'Maksymalna waga 25 kg'
-            },
-            {
-                formula: ({ a, b, c }) => longestSide([a, b, c]) <= 120,
-                description: 'Maksymalna długość boku < 120'
-            },
-            {
-                formula: ({ a, b, c }) => a + b + c <= 220,
-                description: 'Suma wymiarów < 220'
-            }
-        ]
-    },
-    {
-        name: 'InPost paczka niestandardowa',
-        price: prices.inpostOversize,
-        requirements: [
-            {
-                formula: ({ w }) => w <= 25,
-                description: 'Maksymalna waga 25 kg'
-            },
-            {
-                formula: ({ a, b, c }) => {
-                    return longestSide([a, b, c]) > 120 || a + b + c > 220
-                },
-                description: 'jeden z wymiarów > 120 lub długość + szerokość + wysokość > 220'
-            }
-        ]
     }
 ];

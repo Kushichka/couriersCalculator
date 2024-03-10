@@ -1,11 +1,12 @@
-import { useCallback, useState } from 'react';
-import { Box, Container, Paper, Stack, Typography } from '@mui/material';
+import { useCallback, useState } from "react";
+import { Container, Paper, Stack } from "@mui/material";
 
-import { FormCard } from './components/FormCard';
-import { ResultTable } from './components/ResultTable';
-import { createCouriersList } from './utils/createCouriersList';
+import { FormCard } from "./components/FormCard";
+import { ResultTable } from "./components/ResultTable";
+import { createCouriersList } from "./utils/createCouriersList";
+import { Header } from "./components/Header";
 
-import './App.css'
+import "./App.css";
 
 function App() {
     const [suitableCouriers, setSuitableCouriers] = useState([]);
@@ -16,44 +17,27 @@ function App() {
     }, []);
 
     return (
-        <Container
-            sx={{ py: { xs: 1, sm: 2, md: 5 } }}
-        >
-            <Box width={{ xs: 'auto', sm: 500, md: 700 }}>
-                <Paper elevation={3}>
+        <Container>
+            <Header />
+            <Paper elevation={5} square>
+                <Stack
+                    direction="column"
+                    justifyContent="center"
+                    useFlexGap
+                    spacing={{ sx: 0, md: 4 }}
+                >
                     <Stack
-                        direction='column'
-                        justifyContent='center'
-                        useFlexGap
-                        spacing={{ sx: 0, md: 4 }}
+                        direction={{ xs: "column", sm: "row" }}
+                        spacing={{ xs: 2, sm: 5 }}
+                        sx={{ p: { sm: 2, md: 5 } }}
                     >
-                        <Box
-                            textAlign='center'
-                            bgcolor='#000'
-                            color='#fff'
-                        >
-                            <Typography variant='h5' padding={1}>
-                                Paczkulator
-                            </Typography>
-                        </Box>
-
-                        <Stack
-                            direction={{ sm: 'column', md: 'row' }}
-                            spacing={{ sm: 2, md: 5 }}
-                            sx={{
-                                px: { sm: 2, md: 5 },
-                                pb: { sm: 2, md: 5 }
-                            }}
-                        >
-                            <FormCard changeSuitableCouriers={changeSuitableCouriers} />
-                            <ResultTable data={suitableCouriers} />
-                        </Stack>
+                        <FormCard changeSuitableCouriers={changeSuitableCouriers} />
+                        <ResultTable data={suitableCouriers} />
                     </Stack>
-
-                </Paper>
-            </Box>
+                </Stack>
+            </Paper>
         </Container>
-    )
+    );
 }
 
-export default App
+export default App;

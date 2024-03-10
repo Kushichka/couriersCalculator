@@ -1,11 +1,19 @@
-import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
-import PropTypes from 'prop-types';
+import {
+    Paper,
+    Table,
+    TableBody,
+    TableCell,
+    TableContainer,
+    TableHead,
+    TableRow,
+} from "@mui/material";
+import PropTypes from "prop-types";
 
 export const ResultTable = ({ data }) => {
     const items = data.map((item) => (
         <TableRow
             key={item.courier}
-            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+            sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
         >
             <TableCell component="th" scope="row">
                 {item.courier}
@@ -15,7 +23,10 @@ export const ResultTable = ({ data }) => {
     ));
 
     return (
-        <TableContainer component={Paper}>
+        <TableContainer
+            component={Paper}
+            elevation={3}
+        >
             <Table sx={{ minWidth: 300 }}>
                 <TableHead>
                     <TableRow>
@@ -23,16 +34,12 @@ export const ResultTable = ({ data }) => {
                         <TableCell align="right">Cena&nbsp;(zł)</TableCell>
                     </TableRow>
                 </TableHead>
-                <TableBody>
-                    {items}
-                </TableBody>
+                <TableBody>{items}</TableBody>
             </Table>
         </TableContainer>
-    )
+    );
 };
 
 ResultTable.propTypes = {
     data: PropTypes.array.isRequired,
 };
-
-
