@@ -1,6 +1,7 @@
 
 export const anotherSides = (array) => {
-    const maxValueIndex = array.indexOf(Math.max(...array));
-    array.splice(maxValueIndex, 1);
-    return array;
+    const newArray = array.map(parseFloat);
+    const longestIndex = newArray.indexOf(Math.max(...newArray));
+    
+    return newArray.filter((_, index) => index !== longestIndex);
 }
