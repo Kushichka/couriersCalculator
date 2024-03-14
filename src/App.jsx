@@ -1,5 +1,5 @@
 import { useCallback, useState } from "react";
-import { Container, Paper, Stack } from "@mui/material";
+import { Container, Stack } from "@mui/material";
 
 import { FormCard } from "./components/FormCard";
 import { ResultTable } from "./components/ResultTable";
@@ -17,26 +17,30 @@ function App() {
     }, []);
 
     return (
-        <Container>
+        <>
             <Header />
-            <Paper elevation={5} square>
-                <Stack
-                    direction="column"
-                    justifyContent="center"
-                    useFlexGap
-                    spacing={{ sx: 0, md: 4 }}
-                >
+            <Container>
+                <Stack>
+                    {/* Place for <AlertMessage /> */}
+                    
                     <Stack
-                        direction={{ xs: "column", sm: "row" }}
-                        spacing={{ xs: 2, sm: 5 }}
-                        sx={{ p: { sm: 2, md: 5 } }}
+                        direction="column"
+                        justifyContent="center"
+                        useFlexGap
+                        spacing={{ sx: 0, md: 4 }}
                     >
-                        <FormCard changeSuitableCouriers={changeSuitableCouriers} />
-                        <ResultTable data={suitableCouriers} />
+                        <Stack
+                            direction={{ xs: "column", sm: "row" }}
+                            spacing={{ xs: 2, sm: 5 }}
+                            sx={{ pb: { xs: 2, sm: 5, md: 5 } }}
+                        >
+                            <FormCard changeSuitableCouriers={changeSuitableCouriers} />
+                            <ResultTable data={suitableCouriers} />
+                        </Stack>
                     </Stack>
                 </Stack>
-            </Paper>
-        </Container>
+            </Container>
+        </>
     );
 }
 

@@ -27,7 +27,7 @@ export const FormCard = ({ changeSuitableCouriers }) => {
     }, [weight, length, width, height, changeSuitableCouriers]);
 
     return (
-        <Paper  elevation={3} sx={{ p: 2}}>
+        <Paper elevation={3} sx={{ p: 2, backgroundColor: "secondary.main" }}>
             <Stack
                 direction={{ sm: "row", md: "column" }}
                 flexWrap={{ xs: "wrap", md: "nowrap" }}
@@ -35,11 +35,17 @@ export const FormCard = ({ changeSuitableCouriers }) => {
                 justifyContent="center"
                 gap={2}
             >
-                <Box borderBottom='1px solid rgba(224, 224, 224, 1)' paddingBottom={2} width='100%'>
+                <Box
+                    borderBottom="1px solid rgba(224, 224, 224, 1)"
+                    paddingBottom={2}
+                    borderColor='#59595a'
+                    width="100%"
+                >
                     <Typography
                         fontWeight={500}
-                        fontSize='0.875rem'
-                        textAlign='center'
+                        fontSize="1.2rem"
+                        textAlign="center"
+                        color="#343434"
                     >
                         Wymiary
                     </Typography>

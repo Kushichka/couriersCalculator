@@ -35,7 +35,7 @@ export const InputsList = ({ weight, length, width, height, setDimension }) => {
                 {inputs}
             </Grid>
 
-            <Divider flexItem />
+            <Divider sx={{borderColor: '#59595a'}} flexItem />
 
             <FormControlLabel control={<Checkbox />} label="Pobranie" />
         </>
