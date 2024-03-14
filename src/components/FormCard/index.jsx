@@ -3,17 +3,17 @@ import { Box, Paper, Stack, Typography } from "@mui/material";
 import PropTypes from "prop-types";
 
 import { calculateSuitableCouriers } from "../../utils/calculateSuitableCouriers";
-import { InputsList } from "../InputsList/InputsList";
+import { InputsList } from "../InputsList";
 
 export const FormCard = ({ changeSuitableCouriers }) => {
     const [dimensions, setDimensions] = useState({
         weight: "",
-        length: "",
-        width: "",
-        height: "",
+        dimensionA: "",
+        dimensionB: "",
+        dimensionC: "",
     });
 
-    const { weight, length, width, height } = dimensions;
+    const { weight, dimensionA, dimensionB, dimensionC } = dimensions;
 
     const setDimension = useCallback((name, value) => {
         setDimensions((prevDimensions) => ({
@@ -23,11 +23,22 @@ export const FormCard = ({ changeSuitableCouriers }) => {
     }, []);
 
     useEffect(() => {
-        calculateSuitableCouriers(weight, length, width, height, changeSuitableCouriers);
-    }, [weight, length, width, height, changeSuitableCouriers]);
+        if (weight && dimensionA && dimensionB && dimensionC) {
+            calculateSuitableCouriers(
+                weight,
+                dimensionA,
+                dimensionB,
+                dimensionC,
+                changeSuitableCouriers
+            );
+        } else changeSuitableCouriers([]);
+    }, [weight, dimensionA, dimensionB, dimensionC, changeSuitableCouriers]);
 
     return (
-        <Paper elevation={3} sx={{ p: 2, backgroundColor: "secondary.main" }}>
+        <Paper
+            elevation={3}
+            sx={{ p: 2, backgroundColor: "secondary.main" }}
+        >
             <Stack
                 direction={{ sm: "row", md: "column" }}
                 flexWrap={{ xs: "wrap", md: "nowrap" }}
@@ -38,7 +49,7 @@ export const FormCard = ({ changeSuitableCouriers }) => {
                 <Box
                     borderBottom="1px solid rgba(224, 224, 224, 1)"
                     paddingBottom={2}
-                    borderColor='#59595a'
+                    borderColor="#59595a"
                     width="100%"
                 >
                     <Typography
@@ -52,10 +63,7 @@ export const FormCard = ({ changeSuitableCouriers }) => {
                 </Box>
 
                 <InputsList
-                    weight={weight}
-                    length={length}
-                    width={width}
-                    height={height}
+                    dimensions={dimensions}
                     setDimension={setDimension}
                 />
             </Stack>

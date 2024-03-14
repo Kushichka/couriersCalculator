@@ -1,15 +1,23 @@
-import { Checkbox, Divider, FormControlLabel, InputAdornment, OutlinedInput } from "@mui/material";
+import {
+    Checkbox,
+    Divider,
+    FormControlLabel,
+    InputAdornment,
+    OutlinedInput,
+} from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2/Grid2";
 import PropTypes from "prop-types";
 
 import { inputHandler } from "../../utils/inputHandler";
 
-export const InputsList = ({ weight, length, width, height, setDimension }) => {
+export const InputsList = ({ dimensions, setDimension }) => {
+    const { weight, dimensionA, dimensionB, dimensionC } = dimensions;
+
     const inputsData = [
         { name: "weight", placeholder: "Waga", unit: "kg", value: weight },
-        { name: "length", placeholder: "Długość", unit: "cm", value: length },
-        { name: "width", placeholder: "Szerokość", unit: "cm", value: width },
-        { name: "height", placeholder: "Wysokość", unit: "cm", value: height },
+        { name: "dimensionA", placeholder: "Długość", unit: "cm", value: dimensionA },
+        { name: "dimensionB", placeholder: "Szerokość", unit: "cm", value: dimensionB },
+        { name: "dimensionC", placeholder: "Wysokość", unit: "cm", value: dimensionC },
     ];
 
     const inputs = inputsData.map(({ placeholder, name, unit, value }) => (
@@ -30,22 +38,25 @@ export const InputsList = ({ weight, length, width, height, setDimension }) => {
             <Grid
                 container
                 spacing={{ xs: 1, sm: 2 }}
-                direction='column'
-                >
+                direction="column"
+            >
                 {inputs}
             </Grid>
 
-            <Divider sx={{borderColor: '#59595a'}} flexItem />
+            <Divider
+                sx={{ borderColor: "#59595a" }}
+                flexItem
+            />
 
-            <FormControlLabel control={<Checkbox />} label="Pobranie" />
+            <FormControlLabel
+                control={<Checkbox />}
+                label="Pobranie"
+            />
         </>
     );
 };
 
 InputsList.propTypes = {
-    weight: PropTypes.string.isRequired,
-    length: PropTypes.string.isRequired,
-    width: PropTypes.string.isRequired,
-    height: PropTypes.string.isRequired,
+    dimensions: PropTypes.object.isRequired,
     setDimension: PropTypes.func.isRequired,
 };

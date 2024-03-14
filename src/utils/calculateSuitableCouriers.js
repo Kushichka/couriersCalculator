@@ -1,20 +1,14 @@
-import { data } from "../API/db";
+import { couriers } from "../API/db";
 
-export const calculateSuitableCouriers = (weight, length, width, height, callback) => {
-    const suitable = data.filter(courier => {
-        // if(courier.oversize) return
-
-        return courier.requirements.every(req => {
-            return req.formula({
-                w: parseFloat(weight),
-                a: parseFloat(length),
-                b: parseFloat(width),
-                c: parseFloat(height)
-            });
-        });
+export const calculateSuitableCouriers = (weight, dimensionA, dimensionB, dimensionC, callback) => {
+    const results = couriers.map((courier) => {
+        return courier.calculatePrice(
+            weight,
+            dimensionA,
+            dimensionB,
+            dimensionC
+        );
     });
 
-    if (weight && length && width && height) {
-        callback(suitable);
-    }
+    callback(results);
 };

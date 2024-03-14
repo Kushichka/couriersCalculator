@@ -2,71 +2,44 @@ import { anotherSides } from "../../utils/anotherSides";
 import { longestSide } from "../../utils/longestSide";
 import { prices } from "../prices";
 
-export const inpost = [
-    {
-        name: 'InPost paczkomat "A"',
-        price: prices.inpostA,
-        requirements: [
-            {
-                formula: ({ w }) => w <= 25,
-                description: 'Maksymalna waga 25 kg'
-            },
-            {
-                formula: ({ a, b, c }) => longestSide([a, b, c]) <= 64,
-                description: 'Maksymalna długość boku < 64'
-            },
-            {
-                formula: ({ a, b, c }) => {
-                    const shortSides = anotherSides([a, b, c]);
-                    return (shortSides[0] <= 38 && shortSides[1] <= 38) &&
-                        (shortSides[0] <= 8 || shortSides[1] <= 8);
-                },
-                description: '8 x 38 x 64'
-            }
-        ]
-    },
-    {
-        name: 'InPost paczkomat "B"',
-        price: prices.inpostB,
-        requirements: [
-            {
-                formula: ({ w }) => w <= 25,
-                description: 'Maksymalna waga 25 kg'
-            },
-            {
-                formula: ({ a, b, c }) => longestSide([a, b, c]) <= 64,
-                description: 'Maksymalna długość boku < 64'
-            },
-            {
-                formula: ({ a, b, c }) => {
-                    const shortSides = anotherSides([a, b, c]);
-                    return (shortSides[0] <= 38 && shortSides[1] <= 38) &&
-                        (shortSides[0] <= 19 || shortSides[1] <= 19);
-                },
-                description: '19 x 38 x 64'
-            }
-        ]
-    },
-    {
-        name: 'InPost paczkomat "C"',
-        price: prices.inpostC,
-        requirements: [
-            {
-                formula: ({ w }) => w <= 25,
-                description: 'Maksymalna waga 25 kg'
-            },
-            {
-                formula: ({ a, b, c }) => longestSide([a, b, c]) <= 64,
-                description: 'Maksymalna długość boku < 64'
-            },
-            {
-                formula: ({ a, b, c }) => {
-                    const shortSides = anotherSides([a, b, c]);
-                    return (shortSides[0] <= 41 && shortSides[1] <= 41) &&
-                        (shortSides[0] <= 38 || shortSides[1] <= 38);
-                },
-                description: '41 x 38 x 64'
-            }
-        ]
+export class Inpost {
+    constructor() {
+        this.name = {
+            paczkomatA: 'InPost paczkomat "A"',
+            paczkomatB: 'InPost paczkomat "B"',
+            paczkomatC: 'InPost paczkomat "C"'
+        };
+        this.price = {
+            paczkomatA: prices.inpost.paczkomatA,
+            paczkomatB: prices.inpost.paczkomatB,
+            paczkomatC: prices.inpost.paczkomatC
+        }
     }
-];
+
+    calculatePrice(weight, dimensionA, dimensionB, dimensionC) {
+        const [w, a, b, c] = [weight, dimensionA, dimensionB, dimensionC];
+
+        const shortSides = anotherSides([a, b, c]);
+        const longest = longestSide([a, b, c]);
+
+        switch (true) {
+            // weight check
+            case w > 25:
+                return null;
+            // paczkomatA check (64 x 38 x 8)
+            case longest <= 64 && shortSides[0] <= 38 && shortSides[1] <= 38 && (shortSides[0] <= 8 || shortSides[1] <= 8):
+                return { name: this.name.paczkomatA, price: this.price.paczkomatA };
+
+            // paczkomatB check (64 x 38 x 19)
+            case longest <= 64 && shortSides[0] <= 38 && shortSides[1] <= 38 && (shortSides[0] <= 19 || shortSides[1] <= 19):
+                return { name: this.name.paczkomatB, price: this.price.paczkomatB };
+
+            // paczkomatC check (64 x 41 x 38)
+            case longest <= 64 && shortSides[0] <= 41 && shortSides[1] <= 41 && (shortSides[0] <= 38 || shortSides[1] <= 38):
+                return { name: this.name.paczkomatC, price: this.price.paczkomatC };
+
+            default:
+                return null;
+        }
+    }
+}

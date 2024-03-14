@@ -9,10 +9,10 @@ import {
 } from "@mui/material";
 import PropTypes from "prop-types";
 
-export const ResultTable = ({ data }) => {
-    const items = data.map((item) => (
+export const ResultTable = ({ couriers }) => {
+    const items = couriers.map((item, index) => (
         <TableRow
-            key={item.courier}
+            key={index}
             sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
         >
             <TableCell
@@ -24,7 +24,7 @@ export const ResultTable = ({ data }) => {
                     borderColor: "#59595a",
                 }}
             >
-                {item.courier}
+                {item?.name}
             </TableCell>
             <TableCell
                 align="right"
@@ -34,7 +34,7 @@ export const ResultTable = ({ data }) => {
                     borderColor: "#59595a",
                 }}
             >
-                {item.price}
+                {item?.price}
             </TableCell>
         </TableRow>
     ));
@@ -76,5 +76,5 @@ export const ResultTable = ({ data }) => {
 };
 
 ResultTable.propTypes = {
-    data: PropTypes.array.isRequired,
+    couriers: PropTypes.array.isRequired,
 };

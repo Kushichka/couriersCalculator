@@ -3,17 +3,13 @@ import { Container, Stack } from "@mui/material";
 
 import { FormCard } from "./components/FormCard";
 import { ResultTable } from "./components/ResultTable";
-import { createCouriersList } from "./utils/createCouriersList";
 import { Header } from "./components/Header";
-
-import "./App.css";
 
 function App() {
     const [suitableCouriers, setSuitableCouriers] = useState([]);
 
     const changeSuitableCouriers = useCallback((suitable) => {
-        const couriersList = createCouriersList(suitable);
-        setSuitableCouriers(couriersList);
+        setSuitableCouriers(suitable);
     }, []);
 
     return (
@@ -35,7 +31,7 @@ function App() {
                             sx={{ pb: { xs: 2, sm: 5, md: 5 } }}
                         >
                             <FormCard changeSuitableCouriers={changeSuitableCouriers} />
-                            <ResultTable data={suitableCouriers} />
+                            <ResultTable couriers={suitableCouriers} />
                         </Stack>
                     </Stack>
                 </Stack>
