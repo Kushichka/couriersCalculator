@@ -1,4 +1,3 @@
-import { useCallback, useState } from "react";
 import { Container, Stack } from "@mui/material";
 
 import { FormCard } from "./components/FormCard";
@@ -6,17 +5,6 @@ import { ResultTable } from "./components/ResultTable";
 import { Header } from "./components/Header";
 
 function App() {
-    const [suitableCouriers, setSuitableCouriers] = useState([]);
-    const [payment, setPayment] = useState(false); // is on delivery payment
-
-    const paymentHandler = useCallback(() => {
-        setPayment((prevOnDelivery) => !prevOnDelivery);
-    }, []);
-
-    const changeSuitableCouriers = useCallback((suitable) => {
-        setSuitableCouriers(suitable);
-    }, []);
-
     return (
         <>
             <Header />
@@ -35,15 +23,8 @@ function App() {
                             spacing={{ xs: 2, sm: 5 }}
                             sx={{ pb: { xs: 2, sm: 5, md: 5 } }}
                         >
-                            <FormCard
-                                changeSuitableCouriers={changeSuitableCouriers}
-                                payment={payment}
-                                paymentHandler={paymentHandler}
-                            />
-                            <ResultTable
-                                couriers={suitableCouriers}
-                                payment={payment}
-                            />
+                            <FormCard />
+                            <ResultTable />
                         </Stack>
                     </Stack>
                 </Stack>

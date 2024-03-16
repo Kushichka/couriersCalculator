@@ -1,39 +1,8 @@
-import { useCallback, useEffect, useState } from "react";
 import { Box, Paper, Stack, Typography } from "@mui/material";
-import PropTypes from "prop-types";
 
-import { calculateSuitableCouriers } from "../../utils/calculateSuitableCouriers";
 import { InputsList } from "../InputsList";
 
-export const FormCard = ({ changeSuitableCouriers, payment, paymentHandler }) => {
-    const [dimensions, setDimensions] = useState({
-        weight: "",
-        dimensionA: "",
-        dimensionB: "",
-        dimensionC: "",
-    });
-
-    const { weight, dimensionA, dimensionB, dimensionC } = dimensions;
-
-    const setDimension = useCallback((name, value) => {
-        setDimensions((prevDimensions) => ({
-            ...prevDimensions,
-            [name]: value,
-        }));
-    }, []);
-
-    useEffect(() => {
-        if (weight && dimensionA && dimensionB && dimensionC) {
-            calculateSuitableCouriers(
-                weight,
-                dimensionA,
-                dimensionB,
-                dimensionC,
-                changeSuitableCouriers
-            );
-        } else changeSuitableCouriers([]);
-    }, [weight, dimensionA, dimensionB, dimensionC, changeSuitableCouriers]);
-
+export const FormCard = () => {
     return (
         <Paper
             elevation={3}
@@ -62,19 +31,8 @@ export const FormCard = ({ changeSuitableCouriers, payment, paymentHandler }) =>
                     </Typography>
                 </Box>
 
-                <InputsList
-                    dimensions={dimensions}
-                    setDimension={setDimension}
-                    payment={payment}
-                    paymentHandler={paymentHandler}
-                />
+                <InputsList />
             </Stack>
         </Paper>
     );
-};
-
-FormCard.propTypes = {
-    changeSuitableCouriers: PropTypes.func.isRequired,
-    payment: PropTypes.bool.isRequired,
-    paymentHandler: PropTypes.func.isRequired,
 };

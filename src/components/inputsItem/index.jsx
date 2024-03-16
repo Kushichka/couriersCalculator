@@ -1,11 +1,12 @@
-import { memo } from "react";
+import { memo, useContext } from "react";
 import { InputAdornment, OutlinedInput } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2/Grid2";
-import PropTypes from "prop-types";
 
 import { inputHandler } from "../../utils/inputHandler";
+import { Context } from "../../Context";
 
-export const InputsItem = memo(({ dimensions, setDimension }) => {
+export const InputsItem = memo(() => {
+    const { dimensions, setDimension } = useContext(Context);
     const { weight, dimensionA, dimensionB, dimensionC } = dimensions;
 
     const inputsData = [
@@ -32,8 +33,3 @@ export const InputsItem = memo(({ dimensions, setDimension }) => {
 });
 
 InputsItem.displayName = "InputsItem";
-
-InputsItem.propTypes = {
-    dimensions: PropTypes.object.isRequired,
-    setDimension: PropTypes.func.isRequired,
-};

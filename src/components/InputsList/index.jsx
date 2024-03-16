@@ -1,10 +1,13 @@
+import { useContext } from "react";
 import { Checkbox, Divider, FormControlLabel } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2/Grid2";
-import PropTypes from "prop-types";
 
 import { InputsItem } from "../inputsItem";
+import { Context } from "../../Context";
 
-export const InputsList = ({ dimensions, setDimension, payment, paymentHandler }) => {
+export const InputsList = () => {
+    const { payment, paymentHandler } = useContext(Context);
+
     return (
         <>
             <Grid
@@ -12,10 +15,7 @@ export const InputsList = ({ dimensions, setDimension, payment, paymentHandler }
                 spacing={{ xs: 1, sm: 2 }}
                 direction="column"
             >
-                <InputsItem
-                    dimensions={dimensions}
-                    setDimension={setDimension}
-                />
+                <InputsItem />
             </Grid>
 
             <Divider
@@ -31,11 +31,4 @@ export const InputsList = ({ dimensions, setDimension, payment, paymentHandler }
             />
         </>
     );
-};
-
-InputsList.propTypes = {
-    dimensions: PropTypes.object.isRequired,
-    setDimension: PropTypes.func.isRequired,
-    payment: PropTypes.bool.isRequired,
-    paymentHandler: PropTypes.func.isRequired,
 };

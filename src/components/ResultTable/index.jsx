@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import {
     Paper,
     Table,
@@ -7,10 +8,13 @@ import {
     TableHead,
     TableRow,
 } from "@mui/material";
-import PropTypes from "prop-types";
 
-export const ResultTable = ({ couriers, payment }) => {
-    const items = couriers.map((item, index) => (
+import { Context } from "../../Context";
+
+export const ResultTable = () => {
+    const { suitableCouriers, payment } = useContext(Context);
+
+    const items = suitableCouriers.map((item, index) => (
         <TableRow
             key={index}
             sx={{ bgcolor: item?.colors?.bgColor }}
@@ -74,9 +78,4 @@ export const ResultTable = ({ couriers, payment }) => {
             </Table>
         </TableContainer>
     );
-};
-
-ResultTable.propTypes = {
-    couriers: PropTypes.array.isRequired,
-    payment: PropTypes.bool.isRequired,
 };
