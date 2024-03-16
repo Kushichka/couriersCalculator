@@ -1,9 +1,9 @@
 
 export const prices = {
     inpost: {
-        paczkomatA: 8.99,
-        paczkomatB: 9.99,
-        paczkomatC: 10.99
+        paczkomatA: { standard: '8.99', onDelivery: '12.50' },
+        paczkomatB: { standard: '8.99', onDelivery: '12.50' },
+        paczkomatC: { standard: '8.99', onDelivery: '12.50' }
     },
     dhl: 20,
     dpdCourier: 12,

@@ -7,6 +7,11 @@ import { Header } from "./components/Header";
 
 function App() {
     const [suitableCouriers, setSuitableCouriers] = useState([]);
+    const [payment, setPayment] = useState(false); // is on delivery payment
+
+    const paymentHandler = useCallback(() => {
+        setPayment((prevOnDelivery) => !prevOnDelivery);
+    }, []);
 
     const changeSuitableCouriers = useCallback((suitable) => {
         setSuitableCouriers(suitable);
@@ -18,7 +23,7 @@ function App() {
             <Container>
                 <Stack>
                     {/* Place for <AlertMessage /> */}
-                    
+
                     <Stack
                         direction="column"
                         justifyContent="center"
@@ -30,8 +35,15 @@ function App() {
                             spacing={{ xs: 2, sm: 5 }}
                             sx={{ pb: { xs: 2, sm: 5, md: 5 } }}
                         >
-                            <FormCard changeSuitableCouriers={changeSuitableCouriers} />
-                            <ResultTable couriers={suitableCouriers} />
+                            <FormCard
+                                changeSuitableCouriers={changeSuitableCouriers}
+                                payment={payment}
+                                paymentHandler={paymentHandler}
+                            />
+                            <ResultTable
+                                couriers={suitableCouriers}
+                                payment={payment}
+                            />
                         </Stack>
                     </Stack>
                 </Stack>

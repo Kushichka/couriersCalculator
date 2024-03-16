@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import { calculateSuitableCouriers } from "../../utils/calculateSuitableCouriers";
 import { InputsList } from "../InputsList";
 
-export const FormCard = ({ changeSuitableCouriers }) => {
+export const FormCard = ({ changeSuitableCouriers, payment, paymentHandler }) => {
     const [dimensions, setDimensions] = useState({
         weight: "",
         dimensionA: "",
@@ -65,6 +65,8 @@ export const FormCard = ({ changeSuitableCouriers }) => {
                 <InputsList
                     dimensions={dimensions}
                     setDimension={setDimension}
+                    payment={payment}
+                    paymentHandler={paymentHandler}
                 />
             </Stack>
         </Paper>
@@ -73,4 +75,6 @@ export const FormCard = ({ changeSuitableCouriers }) => {
 
 FormCard.propTypes = {
     changeSuitableCouriers: PropTypes.func.isRequired,
+    payment: PropTypes.bool.isRequired,
+    paymentHandler: PropTypes.func.isRequired,
 };

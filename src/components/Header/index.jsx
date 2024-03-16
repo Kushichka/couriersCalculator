@@ -1,6 +1,7 @@
+import { memo } from "react";
 import { Box, Container, Typography } from "@mui/material";
 
-export const Header = () => {
+export const Header = memo(() => {
     return (
         <Box
             color="secondary.main"
@@ -11,8 +12,15 @@ export const Header = () => {
             }}
         >
             <Container>
-                <Typography variant="h5">Paczkulator</Typography>
+                <Typography
+                    variant="h5"
+                    sx={{ cursor: "default" }}
+                >
+                    Paczkulator
+                </Typography>
             </Container>
         </Box>
     );
-};
+});
+
+Header.displayName = "Header";

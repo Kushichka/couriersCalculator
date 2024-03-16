@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 import PropTypes from "prop-types";
 
-export const ResultTable = ({ couriers }) => {
+export const ResultTable = ({ couriers, payment }) => {
     const items = couriers.map((item, index) => (
         <TableRow
             key={index}
@@ -34,7 +34,7 @@ export const ResultTable = ({ couriers }) => {
                     borderColor: "#59595a",
                 }}
             >
-                {item?.price}
+                {payment ? item?.price.onDelivery : item?.price.standard}
             </TableCell>
         </TableRow>
     ));
@@ -77,4 +77,5 @@ export const ResultTable = ({ couriers }) => {
 
 ResultTable.propTypes = {
     couriers: PropTypes.array.isRequired,
+    payment: PropTypes.bool.isRequired,
 };
