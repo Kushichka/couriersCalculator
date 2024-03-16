@@ -10,5 +10,5 @@ export const calculateSuitableCouriers = (weight, dimensionA, dimensionB, dimens
         );
     });
 
-    callback(results);
+    callback(results.filter((result) => result !== null));
 };
