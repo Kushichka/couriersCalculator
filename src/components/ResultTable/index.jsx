@@ -13,14 +13,15 @@ export const ResultTable = ({ couriers, payment }) => {
     const items = couriers.map((item, index) => (
         <TableRow
             key={index}
-            sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+            sx={{ bgcolor: item?.colors?.bgColor }}
         >
             <TableCell
                 component="th"
                 scope="row"
                 sx={{
                     fontSize: "1rem",
-                    color: "#343434",
+                    fontWeight: 600,
+                    color: item?.colors?.fontColor,
                     borderColor: "#59595a",
                 }}
             >
@@ -30,7 +31,7 @@ export const ResultTable = ({ couriers, payment }) => {
                 align="right"
                 sx={{
                     fontSize: "1rem",
-                    color: "#343434",
+                    color: item?.colors?.fontColor,
                     borderColor: "#59595a",
                 }}
             >

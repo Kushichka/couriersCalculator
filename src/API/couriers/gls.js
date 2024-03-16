@@ -15,6 +15,10 @@ export class Gls {
             weightFrom25To31: 'GLS (do 31,5 kg)'
         };
         this.price = prices.gls;
+        this.colors = {
+            bgColor: '#061ab1',
+            fontColor: '#ffffff'
+        };
     }
 
     calculatePrice(weight, dimensionA, dimensionB, dimensionC) {
@@ -37,17 +41,17 @@ export class Gls {
             case 2 * shortSides[0] + 2 * shortSides[1] + longest > 300:
                 return null;
 
-            // gabarite weight check (a * b * c) <= 6000
+            // gabarite weight check
             case w <= 10 && gabarite > 25:
-                return { name: this.name.weightFrom5To10, price: this.price.weightFrom5To10 };
+                return { name: this.name.weightFrom5To10, price: this.price.weightFrom5To10, colors: this.colors };
 
             // weight check (2)
             case w <= 2:
-                return { name: this.name.weightFrom0To2, price: this.price.weightFrom0To2 };
+                return { name: this.name.weightFrom0To2, price: this.price.weightFrom0To2, colors: this.colors };
 
             // weight check (5)
             case w <= 5:
-                return { name: this.name.weightFrom2To5, price: this.price.weightFrom2To5 };
+                return { name: this.name.weightFrom2To5, price: this.price.weightFrom2To5, colors: this.colors };
 
             default:
                 return null;
