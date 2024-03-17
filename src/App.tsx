@@ -1,10 +1,11 @@
+import React from "react";
 import { Container, Stack } from "@mui/material";
 
 import { FormCard } from "./components/FormCard";
 import { ResultTable } from "./components/ResultTable";
 import { Header } from "./components/Header";
 
-function App() {
+export const App = () => {
     return (
         <>
             <Header />
@@ -31,6 +32,4 @@ function App() {
             </Container>
         </>
     );
-}
-
-export default App;
+};

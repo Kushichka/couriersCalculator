@@ -1,23 +1,17 @@
-import { useContext } from "react";
-import {
-    Paper,
-    Table,
-    TableBody,
-    TableCell,
-    TableContainer,
-    TableHead,
-    TableRow,
-} from "@mui/material";
+import React, { useContext } from "react";
+import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
 
 import { Context } from "../../Context";
+import { TContext } from "../../types/TContext";
+import { ISuitableCourier } from "../../types/ISuitableCourier";
 
 export const ResultTable = () => {
-    const { suitableCouriers, payment } = useContext(Context);
+    const { suitableCouriers, payment } = useContext(Context) as TContext;
 
     const items = suitableCouriers.map((item, index) => (
         <TableRow
             key={index}
-            sx={{ bgcolor: item?.colors?.bgColor }}
+            sx={{ bgcolor: item?.colors.bgColor }}
         >
             <TableCell
                 component="th"
@@ -25,7 +19,7 @@ export const ResultTable = () => {
                 sx={{
                     fontSize: "1rem",
                     fontWeight: 600,
-                    color: item?.colors?.fontColor,
+                    color: item?.colors.fontColor,
                     borderColor: "#59595a",
                 }}
             >
@@ -35,7 +29,7 @@ export const ResultTable = () => {
                 align="right"
                 sx={{
                     fontSize: "1rem",
-                    color: item?.colors?.fontColor,
+                    color: item?.colors.fontColor,
                     borderColor: "#59595a",
                 }}
             >

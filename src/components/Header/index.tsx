@@ -1,4 +1,4 @@
-import { memo } from "react";
+import React, { memo } from "react";
 import { Box, Container, Typography } from "@mui/material";
 
 export const Header = memo(() => {
@@ -22,5 +22,3 @@ export const Header = memo(() => {
         </Box>
     );
 });
-
-Header.displayName = "Header";

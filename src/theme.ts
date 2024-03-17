@@ -1,9 +1,9 @@
-import { createTheme } from '@mui/material/styles';
+import { createTheme } from "@mui/material/styles";
 
 const colors = {
-    primary: '#2B2D42',
-    secondary: '#EDF2F4',
-    error: '#D90429',
+    primary: "#2B2D42",
+    secondary: "#EDF2F4",
+    error: "#D90429",
 };
 
 export const theme = createTheme({
@@ -16,6 +16,6 @@ export const theme = createTheme({
         },
         error: {
             main: colors.error,
-        }
+        },
     },
 });

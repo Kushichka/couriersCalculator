@@ -1,7 +1,7 @@
+import React from "react";
 import { Box } from "@mui/material";
-import PropTypes from "prop-types";
 
-export const AlertMessage = ({ message }) => {
+export const AlertMessage = ({ message }: { message: string }) => {
     return (
         <Box
             sx={{
@@ -12,13 +12,7 @@ export const AlertMessage = ({ message }) => {
                 fontSize: "1.2rem",
             }}
         >
-            <p>
-                {message}
-            </p>
+            <p>{message}</p>
         </Box>
     );
 };
-
-AlertMessage.propTypes = {
-    message: PropTypes.string.isRequired
-}

@@ -1,12 +1,13 @@
-import { createContext, useCallback, useEffect, useState } from "react";
-import PropTypes from "prop-types";
+import React, { createContext, useCallback, useEffect, useState } from "react";
 
 import { calculateSuitableCouriers } from "./utils/calculateSuitableCouriers";
+import { TContext } from "./types/TContext";
+import { ISuitableCourier } from "./types/ISuitableCourier";
 
-export const Context = createContext(null);
+export const Context = createContext<TContext | null>(null);
 
 export const ContextProvider = ({ children }) => {
-    const [suitableCouriers, setSuitableCouriers] = useState([]);
+    const [suitableCouriers, setSuitableCouriers] = useState<ISuitableCourier[]>([]);
     const [payment, setPayment] = useState(false); // is on delivery payment
 
     const [dimensions, setDimensions] = useState({
@@ -21,11 +22,11 @@ export const ContextProvider = ({ children }) => {
         setPayment((prevOnDelivery) => !prevOnDelivery);
     }, []);
 
-    const changeSuitableCouriers = useCallback((suitable) => {
+    const changeSuitableCouriers = useCallback((suitable: ISuitableCourier[]) => {
         setSuitableCouriers(suitable);
     }, []);
 
-    const setDimension = useCallback((name, value) => {
+    const setDimension = useCallback((name: string, value: string) => {
         setDimensions((prevDimensions) => ({
             ...prevDimensions,
             [name]: value,
@@ -34,13 +35,7 @@ export const ContextProvider = ({ children }) => {
 
     useEffect(() => {
         if (weight && dimensionA && dimensionB && dimensionC) {
-            calculateSuitableCouriers(
-                weight,
-                dimensionA,
-                dimensionB,
-                dimensionC,
-                changeSuitableCouriers
-            );
+            calculateSuitableCouriers(weight, dimensionA, dimensionB, dimensionC, changeSuitableCouriers);
         } else changeSuitableCouriers([]);
     }, [weight, dimensionA, dimensionB, dimensionC, changeSuitableCouriers]);
 
@@ -57,8 +52,4 @@ export const ContextProvider = ({ children }) => {
             {children}
         </Context.Provider>
     );
-};
-
-ContextProvider.propTypes = {
-    children: PropTypes.node.isRequired,
 };

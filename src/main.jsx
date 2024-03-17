@@ -3,9 +3,9 @@ import ReactDOM from "react-dom/client";
 import { ThemeProvider } from "@mui/material";
 import { inject } from "@vercel/analytics";
 
-import { theme } from "./theme.js";
-import App from "./App.jsx";
-import { ContextProvider } from "./Context.jsx";
+import { theme } from "./theme";
+import { App } from "./App";
+import { ContextProvider } from "./Context";
 
 import "./index.css";
 
