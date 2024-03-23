@@ -2,9 +2,9 @@ import React, { memo, useContext } from "react";
 import { InputAdornment, OutlinedInput } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2/Grid2";
 
-import { inputHandler } from "../../utils/inputHandler";
-import { Context } from "../../Context";
-import { TContext } from "../../types/TContext";
+import { inputHandler } from "../../../utils/inputHandler";
+import { Context } from "../../../Context";
+import { TContext } from "../../../types/TContext";
 
 export const InputsItem = memo(() => {
     const { dimensions, setDimension } = useContext(Context) as TContext;

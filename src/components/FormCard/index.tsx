@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Paper, Stack, Typography } from "@mui/material";
 
-import { InputsList } from "../InputsList";
+import { InputsList } from "./InputsList";
 
 export const FormCard = () => {
     return (

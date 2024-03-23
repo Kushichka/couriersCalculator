@@ -3,7 +3,6 @@ import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow
 
 import { Context } from "../../Context";
 import { TContext } from "../../types/TContext";
-import { ISuitableCourier } from "../../types/ISuitableCourier";
 
 export const ResultTable = () => {
     const { suitableCouriers, payment } = useContext(Context) as TContext;
