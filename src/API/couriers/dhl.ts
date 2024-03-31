@@ -1,7 +1,7 @@
 import { anotherSides } from "../../utils/anotherSides";
 import { longestSide } from "../../utils/longestSide";
 import { prices } from "../prices";
-import { ICourier } from "../../types/ICourier";
+import { ICourier, ISuitableCourier, TColors, TPrice } from "../../types/ICourier";
 
 export class Dhl implements ICourier {
     name: {
@@ -11,12 +11,12 @@ export class Dhl implements ICourier {
         weightFrom20To31: string;
     };
     price: {
-        weightFrom0To5: { standard: string; onDelivery: string };
-        weightFrom5To10: { standard: string; onDelivery: string };
-        weightFrom10To20: { standard: string; onDelivery: string };
-        weightFrom20To31: { standard: string; onDelivery: string };
+        weightFrom0To5: TPrice;
+        weightFrom5To10: TPrice;
+        weightFrom10To20: TPrice;
+        weightFrom20To31: TPrice;
     };
-    colors: { bgColor: string; fontColor: string };
+    colors: TColors;
 
     constructor() {
         this.name = {
@@ -32,7 +32,12 @@ export class Dhl implements ICourier {
         };
     }
 
-    calculatePrice(weight: string, dimensionA: string, dimensionB: string, dimensionC: string) {
+    calculatePrice(
+        weight: string,
+        dimensionA: string,
+        dimensionB: string,
+        dimensionC: string
+    ): ISuitableCourier | null {
         const [w, a, b, c] = [weight, dimensionA, dimensionB, dimensionC].map(parseFloat);
 
         const shortSides = anotherSides([a, b, c]);

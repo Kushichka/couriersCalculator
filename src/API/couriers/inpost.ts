@@ -1,16 +1,16 @@
 import { anotherSides } from "../../utils/anotherSides";
 import { longestSide } from "../../utils/longestSide";
 import { prices } from "../prices";
-import { ICourier } from "../../types/ICourier";
+import { ICourier, ISuitableCourier, TColors, TPrice } from "../../types/ICourier";
 
 export class Inpost implements ICourier {
     name: { paczkomatA: string; paczkomatB: string; paczkomatC: string };
     price: {
-        paczkomatA: { standard: string; onDelivery: string };
-        paczkomatB: { standard: string; onDelivery: string };
-        paczkomatC: { standard: string; onDelivery: string };
+        paczkomatA: TPrice;
+        paczkomatB: TPrice;
+        paczkomatC: TPrice;
     };
-    colors: { bgColor: string; fontColor: string };
+    colors: TColors;
 
     constructor() {
         this.name = {
@@ -25,7 +25,12 @@ export class Inpost implements ICourier {
         };
     }
 
-    calculatePrice(weight: string, dimensionA: string, dimensionB: string, dimensionC: string) {
+    calculatePrice(
+        weight: string,
+        dimensionA: string,
+        dimensionB: string,
+        dimensionC: string
+    ): ISuitableCourier | null {
         const [w, a, b, c] = [weight, dimensionA, dimensionB, dimensionC].map(parseFloat);
 
         const shortSides = anotherSides([a, b, c]);

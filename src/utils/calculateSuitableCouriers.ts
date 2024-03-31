@@ -1,5 +1,5 @@
 import { couriers } from "../API/db";
-import { ISuitableCourier } from "../types/ISuitableCourier";
+import { ISuitableCourier } from "../types/ICourier";
 
 export const calculateSuitableCouriers = (
     weight: string,

@@ -1,4 +1,4 @@
-import { ISuitableCourier } from "./ISuitableCourier";
+import { ISuitableCourier } from "./ICourier";
 
 export type TContext = {
     suitableCouriers: ISuitableCourier[];

@@ -14,10 +14,10 @@ export const prices = {
         weightFrom25To31: { standard: "22,77", onDelivery: "27,50" },
     },
     dhl: {
-        weightFrom0To5: { standard: "14,13", onDelivery: "Brak" },
-        weightFrom5To10: { standard: "18,48", onDelivery: "Brak" },
-        weightFrom10To20: { standard: "21,33", onDelivery: "Brak" },
-        weightFrom20To31: { standard: "23,44", onDelivery: "Brak" },
+        weightFrom0To5: { standard: "14,13", onDelivery: "15,97" },
+        weightFrom5To10: { standard: "18,48", onDelivery: "20,32" },
+        weightFrom10To20: { standard: "21,33", onDelivery: "23,17" },
+        weightFrom20To31: { standard: "23,44", onDelivery: "25,28" },
     },
     dpd: {
         weightFrom0To2: { standard: "14,14", onDelivery: "17,07" },

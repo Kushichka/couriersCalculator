@@ -2,7 +2,7 @@ import { anotherSides } from "../../utils/anotherSides";
 import { longestSide } from "../../utils/longestSide";
 import { gabariteWeight } from "../../utils/gabariteWeight";
 import { prices } from "../prices";
-import { ICourier } from "../../types/ICourier";
+import { ICourier, ISuitableCourier, TColors, TPrice } from "../../types/ICourier";
 
 export class Dpd implements ICourier {
     name: {
@@ -15,15 +15,15 @@ export class Dpd implements ICourier {
         weightFrom25To31: string;
     };
     price: {
-        weightFrom0To2: { standard: string; onDelivery: string };
-        weightFrom2To5: { standard: string; onDelivery: string };
-        weightFrom5To10: { standard: string; onDelivery: string };
-        weightFrom10To15: { standard: string; onDelivery: string };
-        weightFrom15To20: { standard: string; onDelivery: string };
-        weightFrom20To25: { standard: string; onDelivery: string };
-        weightFrom25To31: { standard: string; onDelivery: string };
+        weightFrom0To2: TPrice;
+        weightFrom2To5: TPrice;
+        weightFrom5To10: TPrice;
+        weightFrom10To15: TPrice;
+        weightFrom15To20: TPrice;
+        weightFrom20To25: TPrice;
+        weightFrom25To31: TPrice;
     };
-    colors: { bgColor: string; fontColor: string };
+    colors: TColors;
     constructor() {
         this.name = {
             weightFrom0To2: "DPD (do 2 kg)",
@@ -41,7 +41,12 @@ export class Dpd implements ICourier {
         };
     }
 
-    calculatePrice(weight: string, dimensionA: string, dimensionB: string, dimensionC: string) {
+    calculatePrice(
+        weight: string,
+        dimensionA: string,
+        dimensionB: string,
+        dimensionC: string
+    ): ISuitableCourier | null {
         const [w, a, b, c] = [weight, dimensionA, dimensionB, dimensionC].map(parseFloat);
 
         const shortSides = anotherSides([a, b, c]);

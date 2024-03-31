@@ -2,7 +2,7 @@ import React, { createContext, useCallback, useEffect, useState } from "react";
 
 import { calculateSuitableCouriers } from "./utils/calculateSuitableCouriers";
 import { TContext } from "./types/TContext";
-import { ISuitableCourier } from "./types/ISuitableCourier";
+import { ISuitableCourier } from "./types/ICourier";
 
 export const Context = createContext<TContext | null>(null);
 
