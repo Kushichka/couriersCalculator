@@ -3,25 +3,14 @@ import { longestSide } from "../../utils/longestSide";
 import { gabariteWeight } from "../../utils/gabariteWeight";
 import { prices } from "../prices";
 import { ICourier, ISuitableCourier, TColors, TPrice } from "../../types/ICourier";
+import { config } from "../../config";
 
 export class Dpd implements ICourier {
     name: {
-        weightFrom0To2: string;
-        weightFrom2To5: string;
-        weightFrom5To10: string;
-        weightFrom10To15: string;
-        weightFrom15To20: string;
-        weightFrom20To25: string;
-        weightFrom25To31: string;
+        [key: string]: string;
     };
     price: {
-        weightFrom0To2: TPrice;
-        weightFrom2To5: TPrice;
-        weightFrom5To10: TPrice;
-        weightFrom10To15: TPrice;
-        weightFrom15To20: TPrice;
-        weightFrom20To25: TPrice;
-        weightFrom25To31: TPrice;
+        [key: string]: TPrice;
     };
     colors: TColors;
     constructor() {
@@ -59,7 +48,7 @@ export class Dpd implements ICourier {
                 return null;
 
             // longest side check (150)
-            case longest > 150:
+            case longest > config.longestParcelSide.dpd:
                 return null;
 
             // package volume check (a + (2 * b) + (2 * c)) <= 300)

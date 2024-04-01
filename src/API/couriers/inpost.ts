@@ -2,13 +2,14 @@ import { anotherSides } from "../../utils/anotherSides";
 import { longestSide } from "../../utils/longestSide";
 import { prices } from "../prices";
 import { ICourier, ISuitableCourier, TColors, TPrice } from "../../types/ICourier";
+import { config } from "../../config";
 
 export class Inpost implements ICourier {
-    name: { paczkomatA: string; paczkomatB: string; paczkomatC: string };
+    name: {
+        [key: string]: string;
+    };
     price: {
-        paczkomatA: TPrice;
-        paczkomatB: TPrice;
-        paczkomatC: TPrice;
+        [key: string]: TPrice;
     };
     colors: TColors;
 
@@ -42,7 +43,7 @@ export class Inpost implements ICourier {
                 return null;
 
             // longest side check (63)
-            case longest > 63:
+            case longest > config.longestParcelSide.inpostPaczkomat:
                 return null;
 
             // paczkomatA check (63 x 38 x 8)

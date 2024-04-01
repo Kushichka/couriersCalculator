@@ -1,4 +1,12 @@
-export const prices = {
+import { TPrice } from "../types/ICourier";
+
+interface IPrices {
+    [key: string]: {
+        [key: string]: TPrice;
+    };
+}
+
+export const prices: IPrices = {
     inpost: {
         paczkomatA: { standard: "8,99", onDelivery: "12,50" },
         paczkomatB: { standard: "8,99", onDelivery: "12,50" },
@@ -27,5 +35,10 @@ export const prices = {
         weightFrom15To20: { standard: "18,65", onDelivery: "21,58" },
         weightFrom20To25: { standard: "19,68", onDelivery: "22,60" },
         weightFrom25To31: { standard: "21,13", onDelivery: "24,05" },
+    },
+    schenker: {
+        half: { standard: "75,00(Fake)", onDelivery: "80,00(Fake)" },
+        standard: { standard: "95,00(Fake)", onDelivery: "100,00(Fake)" },
+        modul: { standard: "115,00(Fake)", onDelivery: "120,00(Fake)" },
     },
 };

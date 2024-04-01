@@ -2,19 +2,14 @@ import { anotherSides } from "../../utils/anotherSides";
 import { longestSide } from "../../utils/longestSide";
 import { prices } from "../prices";
 import { ICourier, ISuitableCourier, TColors, TPrice } from "../../types/ICourier";
+import { config } from "../../config";
 
 export class Dhl implements ICourier {
     name: {
-        weightFrom0To5: string;
-        weightFrom5To10: string;
-        weightFrom10To20: string;
-        weightFrom20To31: string;
+        [key: string]: string;
     };
     price: {
-        weightFrom0To5: TPrice;
-        weightFrom5To10: TPrice;
-        weightFrom10To20: TPrice;
-        weightFrom20To31: TPrice;
+        [key: string]: TPrice;
     };
     colors: TColors;
 
@@ -49,7 +44,7 @@ export class Dhl implements ICourier {
                 return null;
 
             // longest side check (120)
-            case longest > 120:
+            case longest > config.longestParcelSide.dhl:
                 return null;
 
             // other sides check (60 x 60)

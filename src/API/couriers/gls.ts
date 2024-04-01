@@ -3,25 +3,14 @@ import { longestSide } from "../../utils/longestSide";
 import { gabariteWeight } from "../../utils/gabariteWeight";
 import { prices } from "../prices";
 import { ICourier, ISuitableCourier, TColors, TPrice } from "../../types/ICourier";
+import { config } from "../../config";
 
 export class Gls implements ICourier {
     name: {
-        weightFrom0To2: string;
-        weightFrom2To5: string;
-        weightFrom5To10: string;
-        weightFrom10To15: string;
-        weightFrom15To20: string;
-        weightFrom20To25: string;
-        weightFrom25To31: string;
+        [key: string]: string;
     };
     price: {
-        weightFrom0To2: TPrice;
-        weightFrom2To5: TPrice;
-        weightFrom5To10: TPrice;
-        weightFrom10To15: TPrice;
-        weightFrom15To20: TPrice;
-        weightFrom20To25: TPrice;
-        weightFrom25To31: TPrice;
+        [key: string]: TPrice;
     };
     colors: TColors;
     constructor() {
@@ -59,7 +48,7 @@ export class Gls implements ICourier {
                 return null;
 
             // longest side check (180)
-            case longest > 180:
+            case longest > config.longestParcelSide.gls:
                 return null;
 
             // package volume check (a + (2 * b) + (2 * c)) <= 300)
@@ -87,6 +76,39 @@ export class Gls implements ICourier {
                 return {
                     name: this.name.weightFrom2To5,
                     price: this.price.weightFrom2To5,
+                    colors: this.colors,
+                };
+
+            // if max length is too big for DPD and too small for Schenker
+            case w <= 10 && longest > 150:
+                return {
+                    name: this.name.weightFrom5To10,
+                    price: this.price.weightFrom5To10,
+                    colors: this.colors,
+                };
+
+            case w <= 15 && longest > 150:
+                return {
+                    name: this.name.weightFrom10To15,
+                    price: this.price.weightFrom10To15,
+                    colors: this.colors,
+                };
+            case w <= 20 && longest > 150:
+                return {
+                    name: this.name.weightFrom15To20,
+                    price: this.price.weightFrom15To20,
+                    colors: this.colors,
+                };
+            case w <= 25 && longest > 150:
+                return {
+                    name: this.name.weightFrom20To25,
+                    price: this.price.weightFrom20To25,
+                    colors: this.colors,
+                };
+            case w <= 31.5 && longest > 150:
+                return {
+                    name: this.name.weightFrom25To31,
+                    price: this.price.weightFrom25To31,
                     colors: this.colors,
                 };
 
