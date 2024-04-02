@@ -4,6 +4,7 @@ import { gabariteWeight } from "../../utils/gabariteWeight";
 import { prices } from "../prices";
 import { ICourier, ISuitableCourier, TColors, TPrice } from "../../types/ICourier";
 import { config } from "../../config";
+// import { images } from "../../assets/images";
 
 export class Dpd implements ICourier {
     name: {
@@ -13,6 +14,7 @@ export class Dpd implements ICourier {
         [key: string]: TPrice;
     };
     colors: TColors;
+    logo: string;
     constructor() {
         this.name = {
             weightFrom0To2: "DPD (do 2 kg)",
@@ -28,19 +30,15 @@ export class Dpd implements ICourier {
             bgColor: "#dc0032",
             fontColor: "#414042",
         };
+        // this.logo = images.logoDpd;
     }
 
-    calculatePrice(
-        weight: string,
-        dimensionA: string,
-        dimensionB: string,
-        dimensionC: string
-    ): ISuitableCourier | null {
-        const [w, a, b, c] = [weight, dimensionA, dimensionB, dimensionC].map(parseFloat);
+    calculatePrice(weight: string, sideA: string, sideB: string, sideC: string): ISuitableCourier | null {
+        const [w, a, b, c] = [weight, sideA, sideB, sideC].map(parseFloat);
 
-        const shortSides = anotherSides([a, b, c]);
-        const longest = longestSide([a, b, c]);
-        const gabarite = gabariteWeight([a, b, c]);
+        const shortSides = anotherSides(a, b, c);
+        const longest = longestSide(a, b, c);
+        const gabarite = gabariteWeight(a, b, c);
 
         switch (true) {
             // weight check (31.5)
@@ -81,6 +79,7 @@ export class Dpd implements ICourier {
                     name: this.name.weightFrom15To20,
                     price: this.price.weightFrom15To20,
                     colors: this.colors,
+                    // logo: this.logo,
                 };
 
             // weight check (20 - 25)

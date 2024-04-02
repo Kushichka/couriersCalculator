@@ -5,6 +5,7 @@ export const config = {
         dpd: 150,
         gls: 180,
         inpostPaczkomat: 63,
+        pocztex: 120,
     },
     // max parcel length (GLS)
     maxParcelLength: 180,

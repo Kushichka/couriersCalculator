@@ -6,6 +6,7 @@ export interface ISuitableCourier {
     name: string;
     price: TPrice;
     colors: TColors;
+    logo?: string;
 }
 
 export type TCalculatePrice = (
@@ -23,5 +24,6 @@ export interface ICourier {
         [key: string]: TPrice;
     };
     colors: TColors;
+    logo?: React.ReactNode;
     calculatePrice: TCalculatePrice;
 }

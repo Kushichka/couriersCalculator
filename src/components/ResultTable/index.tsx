@@ -22,12 +22,21 @@ export const ResultTable = () => {
                     borderColor: "#59595a",
                 }}
             >
+                {item.logo && (
+                    <img
+                        style={{ width: "50px", height: "100%", marginRight: "10px" }}
+                        src={item.logo}
+                        alt="courier logo"
+                    />
+                )}
+
                 {item?.name}
             </TableCell>
             <TableCell
                 align="right"
                 sx={{
                     fontSize: "1rem",
+                    fontWeight: 600,
                     color: item?.colors.fontColor,
                     borderColor: "#59595a",
                 }}

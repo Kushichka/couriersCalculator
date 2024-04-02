@@ -26,16 +26,11 @@ export class Inpost implements ICourier {
         };
     }
 
-    calculatePrice(
-        weight: string,
-        dimensionA: string,
-        dimensionB: string,
-        dimensionC: string
-    ): ISuitableCourier | null {
-        const [w, a, b, c] = [weight, dimensionA, dimensionB, dimensionC].map(parseFloat);
+    calculatePrice(weight: string, sideA: string, sideB: string, sideC: string): ISuitableCourier | null {
+        const [w, a, b, c] = [weight, sideA, sideB, sideC].map(parseFloat);
 
-        const shortSides = anotherSides([a, b, c]);
-        const longest = longestSide([a, b, c]);
+        const shortSides = anotherSides(a, b, c);
+        const longest = longestSide(a, b, c);
 
         switch (true) {
             // weight check (25)

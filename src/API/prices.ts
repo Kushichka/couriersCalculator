@@ -36,6 +36,13 @@ export const prices: IPrices = {
         weightFrom20To25: { standard: "19,68", onDelivery: "22,60" },
         weightFrom25To31: { standard: "21,13", onDelivery: "24,05" },
     },
+    pocztex: {
+        pocztexS: { standard: "13,20", onDelivery: "Brak" },
+        pocztexM: { standard: "13,88", onDelivery: "Brak" },
+        pocztexL: { standard: "15,00", onDelivery: "Brak" },
+        pocztexXl: { standard: "21,52", onDelivery: "Brak" },
+        pocztex2xl: { standard: "30,14", onDelivery: "Brak" },
+    },
     schenker: {
         half: { standard: "75,00(Fake)", onDelivery: "80,00(Fake)" },
         standard: { standard: "95,00(Fake)", onDelivery: "100,00(Fake)" },
