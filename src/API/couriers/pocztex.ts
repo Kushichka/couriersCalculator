@@ -39,7 +39,7 @@ export class Pocztex implements ICourier {
             case w > 30:
                 return null;
 
-            // package volume check (a + b + c) <= 250
+            // package check (a + b + c) <= 250
             case a + b + c > 250:
                 return null;
 

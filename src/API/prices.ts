@@ -8,9 +8,9 @@ interface IPrices {
 
 export const prices: IPrices = {
     inpost: {
-        paczkomatA: { standard: "8,99", onDelivery: "12,50" },
-        paczkomatB: { standard: "8,99", onDelivery: "12,50" },
-        paczkomatC: { standard: "8,99", onDelivery: "12,50" },
+        paczkomatA: { standard: "12,67", onDelivery: "Brak" },
+        paczkomatB: { standard: "13,35", onDelivery: "Brak" },
+        paczkomatC: { standard: "15,42", onDelivery: "Brak" },
     },
     gls: {
         weightFrom0To2: { standard: "11,50", onDelivery: "16,22" },
@@ -44,8 +44,8 @@ export const prices: IPrices = {
         pocztex2xl: { standard: "30,14", onDelivery: "Brak" },
     },
     schenker: {
-        half: { standard: "75,00(Fake)", onDelivery: "80,00(Fake)" },
-        standard: { standard: "95,00(Fake)", onDelivery: "100,00(Fake)" },
-        modul: { standard: "115,00(Fake)", onDelivery: "120,00(Fake)" },
+        half: { standard: "75,00(Fake)", onDelivery: "Brak" },
+        standard: { standard: "95,00(Fake)", onDelivery: "Brak" },
+        modul: { standard: "115,00(Fake)", onDelivery: "Brak" },
     },
 };

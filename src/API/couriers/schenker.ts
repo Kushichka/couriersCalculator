@@ -33,10 +33,12 @@ export class Schenker implements ICourier {
         const longest = longestSide(a, b, c);
 
         switch (true) {
-            case w <= 31.5 && longest <= config.maxParcelLength:
+            case w <= 31.5 &&
+                longest <= config.maxParcelLength &&
+                2 * shortSides[0] + 2 * shortSides[1] + longest <= 300:
                 return null;
 
-            // half pallet check (180 x 80 x 60)
+            // half pallet check (185 x 80 x 60)
             case w <= config.maxPalletWeight.half &&
                 longest <= config.maxPalletPayloadHeight &&
                 shortSides[0] <= config.halfPalletDimensions.width &&
@@ -45,7 +47,7 @@ export class Schenker implements ICourier {
                     shortSides[1] <= config.halfPalletDimensions.length):
                 return { name: this.name.half, price: this.price.half, colors: this.colors };
 
-            // standard pallet check (180 x 120 x 80)
+            // standard pallet check (185 x 120 x 80)
             case w <= config.maxPalletWeight.standard &&
                 longest <= config.maxPalletPayloadHeight &&
                 shortSides[0] <= config.standardPalletDimensions.length &&
@@ -58,7 +60,7 @@ export class Schenker implements ICourier {
                     colors: this.colors,
                 };
 
-            // modul pallet check (180 x 400 x 240)
+            // modul pallet check (185 x 400 x 240)
             case w <= config.maxPalletWeight.modul &&
                 longest <= config.modulPalletDimensions.length &&
                 shortSides[0] <= config.modulPalletDimensions.width &&

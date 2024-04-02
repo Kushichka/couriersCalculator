@@ -3,12 +3,12 @@ export const config = {
     longestParcelSide: {
         dhl: 120,
         dpd: 150,
-        gls: 180,
+        gls: 200,
         inpostPaczkomat: 63,
         pocztex: 120,
     },
     // max parcel length (GLS)
-    maxParcelLength: 180,
+    maxParcelLength: 200,
 
     // max pallet dimensions
     halfPalletDimensions: {
@@ -29,6 +29,6 @@ export const config = {
         modul: 800,
     },
     maxPalletPayloadHeight: 185,
-    // max payload hight(165) + pallet height (15)
+    // max payload height(185) + pallet height (15)
     maxPalletHeight: 200,
 };

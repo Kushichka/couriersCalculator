@@ -49,7 +49,7 @@ export class Dpd implements ICourier {
             case longest > config.longestParcelSide.dpd:
                 return null;
 
-            // package volume check (a + (2 * b) + (2 * c)) <= 300)
+            // 300 - max for DPD
             case 2 * shortSides[0] + 2 * shortSides[1] + longest > 300:
                 return null;
 
@@ -91,7 +91,7 @@ export class Dpd implements ICourier {
                 };
 
             // weight check (25 - 31.5)
-            case w > 25 && w <= 31.5:
+            case w > 25:
                 return {
                     name: this.name.weightFrom25To31,
                     price: this.price.weightFrom25To31,

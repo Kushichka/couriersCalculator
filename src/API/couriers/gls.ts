@@ -42,11 +42,11 @@ export class Gls implements ICourier {
             case w > 31.5:
                 return null;
 
-            // longest side check (180)
+            // longest side check (200)
             case longest > config.longestParcelSide.gls:
                 return null;
 
-            // package volume check (a + (2 * b) + (2 * c)) <= 300)
+            // 300 - max for GLS
             case 2 * shortSides[0] + 2 * shortSides[1] + longest > 300:
                 return null;
 
