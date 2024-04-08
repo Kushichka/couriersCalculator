@@ -9,17 +9,22 @@ export const Context = createContext<TContext | null>(null);
 export const ContextProvider = ({ children }) => {
     const [suitableCouriers, setSuitableCouriers] = useState<ISuitableCourier[]>([]);
     const [payment, setPayment] = useState(false); // is on delivery payment
+    const [alertMessage, setAlertMessage] = useState("");
 
     const [dimensions, setDimensions] = useState({
         weight: "",
-        dimensionA: "",
-        dimensionB: "",
-        dimensionC: "",
+        sideA: "",
+        sideB: "",
+        sideC: "",
     });
-    const { weight, dimensionA, dimensionB, dimensionC } = dimensions;
+    const { weight, sideA, sideB, sideC } = dimensions;
 
     const paymentHandler = useCallback(() => {
         setPayment((prevOnDelivery) => !prevOnDelivery);
+    }, []);
+
+    const alertHandler = useCallback((message: string) => {
+        setAlertMessage(message);
     }, []);
 
     const changeSuitableCouriers = useCallback((suitable: ISuitableCourier[]) => {
@@ -34,10 +39,10 @@ export const ContextProvider = ({ children }) => {
     }, []);
 
     useEffect(() => {
-        if (weight && dimensionA && dimensionB && dimensionC) {
-            calculateSuitableCouriers(weight, dimensionA, dimensionB, dimensionC, changeSuitableCouriers);
+        if (weight && sideA && sideB && sideC) {
+            calculateSuitableCouriers(weight, sideA, sideB, sideC, changeSuitableCouriers);
         } else changeSuitableCouriers([]);
-    }, [weight, dimensionA, dimensionB, dimensionC, changeSuitableCouriers]);
+    }, [weight, sideA, sideB, sideC, changeSuitableCouriers]);
 
     return (
         <Context.Provider
@@ -47,6 +52,8 @@ export const ContextProvider = ({ children }) => {
                 paymentHandler,
                 dimensions,
                 setDimension,
+                alertMessage,
+                alertHandler,
             }}
         >
             {children}

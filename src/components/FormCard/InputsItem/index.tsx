@@ -8,13 +8,13 @@ import { TContext } from "../../../types/TContext";
 
 export const InputsItem = memo(() => {
     const { dimensions, setDimension } = useContext(Context) as TContext;
-    const { weight, dimensionA, dimensionB, dimensionC } = dimensions;
+    const { weight, sideA, sideB, sideC } = dimensions;
 
     const inputsData = [
         { name: "weight", placeholder: "Waga", unit: "kg", value: weight },
-        { name: "dimensionA", placeholder: "Długość", unit: "cm", value: dimensionA },
-        { name: "dimensionB", placeholder: "Szerokość", unit: "cm", value: dimensionB },
-        { name: "dimensionC", placeholder: "Wysokość", unit: "cm", value: dimensionC },
+        { name: "sideA", placeholder: "Długość", unit: "cm", value: sideA },
+        { name: "sideB", placeholder: "Szerokość", unit: "cm", value: sideB },
+        { name: "sideC", placeholder: "Wysokość", unit: "cm", value: sideC },
     ];
 
     const inputs = inputsData.map(({ placeholder, name, unit, value }) => (

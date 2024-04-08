@@ -1,5 +1,8 @@
 import React, { memo } from "react";
-import { Box, Container, Typography } from "@mui/material";
+import { Box, Container } from "@mui/material";
+
+import { Logo } from "../ui/Logo";
+// import { MessageButton } from "../ui/MessageButton";
 
 export const Header = memo(() => {
     return (
@@ -12,12 +15,13 @@ export const Header = memo(() => {
             }}
         >
             <Container>
-                <Typography
-                    variant="h5"
-                    sx={{ cursor: "default" }}
+                <Box
+                    display="flex"
+                    justifyContent="space-between"
                 >
-                    Paczkulator
-                </Typography>
+                    <Logo />
+                    {/* <MessageButton /> */}
+                </Box>
             </Container>
         </Box>
     );

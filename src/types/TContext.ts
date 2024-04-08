@@ -6,9 +6,11 @@ export type TContext = {
     paymentHandler: () => void;
     dimensions: {
         weight: string;
-        dimensionA: string;
-        dimensionB: string;
-        dimensionC: string;
+        sideA: string;
+        sideB: string;
+        sideC: string;
     };
+    alertMessage: string;
+    alertHandler: (message: string) => void;
     setDimension: (name: string, value: string) => void;
 };
