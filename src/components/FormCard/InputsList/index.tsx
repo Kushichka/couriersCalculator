@@ -1,10 +1,11 @@
 import React, { useContext } from "react";
-import { Checkbox, Divider, FormControlLabel } from "@mui/material";
+import { Checkbox, FormControlLabel } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2/Grid2";
 
 import { InputsItem } from "../InputsItem";
 import { Context } from "../../../Context";
 import { TContext } from "../../../types/TContext";
+import { Divider } from "../../ui/Divider";
 
 export const InputsList = () => {
     const { payment, paymentHandler } = useContext(Context) as TContext;
@@ -19,10 +20,7 @@ export const InputsList = () => {
                 <InputsItem />
             </Grid>
 
-            <Divider
-                sx={{ borderColor: "#59595a" }}
-                flexItem
-            />
+            <Divider />
 
             <FormControlLabel
                 control={<Checkbox />}

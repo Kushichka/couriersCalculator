@@ -7,6 +7,15 @@ const colors = {
 };
 
 export const theme = createTheme({
+    breakpoints: {
+        values: {
+            xs: 0,
+            sm: 630,
+            md: 900,
+            lg: 1200,
+            xl: 1536,
+        },
+    },
     palette: {
         primary: {
             main: colors.primary,

@@ -4,6 +4,8 @@ import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow
 import { Context } from "../../Context";
 import { TContext } from "../../types/TContext";
 
+const borderColor = "#59595a";
+
 export const ResultTable = () => {
     const { suitableCouriers, payment } = useContext(Context) as TContext;
 
@@ -19,7 +21,7 @@ export const ResultTable = () => {
                     fontSize: "1rem",
                     fontWeight: 600,
                     color: item?.colors.fontColor,
-                    borderColor: "#59595a",
+                    borderColor: borderColor,
                 }}
             >
                 {item.logo && (
@@ -38,7 +40,7 @@ export const ResultTable = () => {
                     fontSize: "1rem",
                     fontWeight: 600,
                     color: item?.colors.fontColor,
-                    borderColor: "#59595a",
+                    borderColor: borderColor,
                 }}
             >
                 {payment ? item?.price.onDelivery : item?.price.standard}
@@ -59,7 +61,7 @@ export const ResultTable = () => {
                             sx={{
                                 fontSize: "1.2rem",
                                 color: "#343434",
-                                borderColor: "#59595a",
+                                borderColor: borderColor,
                             }}
                         >
                             Kurier
@@ -68,7 +70,7 @@ export const ResultTable = () => {
                             sx={{
                                 fontSize: "1.2rem",
                                 color: "#343434",
-                                borderColor: "#59595a",
+                                borderColor: borderColor,
                             }}
                             align="right"
                         >

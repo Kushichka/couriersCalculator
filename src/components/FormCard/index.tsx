@@ -1,7 +1,8 @@
 import React from "react";
-import { Box, Paper, Stack, Typography } from "@mui/material";
+import { Paper, Stack, Typography } from "@mui/material";
 
 import { InputsList } from "./InputsList";
+import { Divider } from "../ui/Divider";
 
 export const FormCard = () => {
     return (
@@ -16,21 +17,16 @@ export const FormCard = () => {
                 justifyContent="center"
                 gap={2}
             >
-                <Box
-                    borderBottom="1px solid rgba(224, 224, 224, 1)"
-                    paddingBottom={2}
-                    borderColor="#59595a"
-                    width="100%"
+                <Typography
+                    fontWeight={500}
+                    fontSize="1.2rem"
+                    textAlign="center"
+                    color="#343434"
                 >
-                    <Typography
-                        fontWeight={500}
-                        fontSize="1.2rem"
-                        textAlign="center"
-                        color="#343434"
-                    >
-                        Wymiary
-                    </Typography>
-                </Box>
+                    Wymiary
+                </Typography>
+
+                <Divider />
 
                 <InputsList />
             </Stack>
