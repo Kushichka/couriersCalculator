@@ -1,4 +1,4 @@
-export type TPrice = { standard: string; onDelivery: string };
+export type TPrice = { standard?: string; onDelivery?: string; link?: string };
 
 export type TColors = { bgColor: string; fontColor: string };
 

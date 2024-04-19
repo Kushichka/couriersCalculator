@@ -31,4 +31,5 @@ export const config = {
     maxPalletPayloadHeight: 185,
     // max payload height(185) + pallet height (15)
     maxPalletHeight: 200,
+    borderColor: "#59595a",
 };

@@ -44,8 +44,11 @@ export const prices: IPrices = {
         pocztex2xl: { standard: "30,14", onDelivery: "Brak" },
     },
     schenker: {
-        half: { standard: "75,00(Fake)", onDelivery: "Brak" },
-        standard: { standard: "95,00(Fake)", onDelivery: "Brak" },
-        modul: { standard: "115,00(Fake)", onDelivery: "Brak" },
+        link: { link: "/schenker/calculator.xlsx" },
+    },
+    raben: {
+        half: { standard: "75,00(Fake)", onDelivery: "100" },
+        standard: { standard: "95,00(Fake)", onDelivery: "120" },
+        modul: { standard: "115,00(Fake)", onDelivery: "130" },
     },
 };

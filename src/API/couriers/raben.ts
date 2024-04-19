@@ -4,7 +4,7 @@ import { longestSide } from "../../utils/longestSide";
 import { prices } from "../prices";
 import { config } from "../../config";
 
-export class Schenker implements ICourier {
+export class Raben implements ICourier {
     name: {
         [key: string]: string;
     };
@@ -15,14 +15,14 @@ export class Schenker implements ICourier {
 
     constructor() {
         this.name = {
-            half: "Schenker półpaleta",
-            standard: "Schenker standard",
-            modul: "Schenker moduł",
+            half: "Raben półpaleta",
+            standard: "Raben standard",
+            modul: "Raben moduł",
         };
-        this.price = prices.schenker;
+        this.price = prices.raben;
         this.colors = {
             bgColor: "#fff",
-            fontColor: "#000",
+            fontColor: "#d8001f",
         };
     }
 
@@ -45,7 +45,7 @@ export class Schenker implements ICourier {
                 shortSides[1] <= config.halfPalletDimensions.width &&
                 (shortSides[0] <= config.halfPalletDimensions.length ||
                     shortSides[1] <= config.halfPalletDimensions.length):
-                return { name: this.name.half, price: this.price.link, colors: this.colors };
+                return { name: this.name.half, price: this.price.half, colors: this.colors };
 
             // standard pallet check (185 x 120 x 80)
             case w <= config.maxPalletWeight.standard &&
@@ -56,7 +56,7 @@ export class Schenker implements ICourier {
                     shortSides[1] <= config.standardPalletDimensions.width):
                 return {
                     name: this.name.standard,
-                    price: this.price.link,
+                    price: this.price.standard,
                     colors: this.colors,
                 };
 
@@ -69,7 +69,7 @@ export class Schenker implements ICourier {
                     shortSides[1] <= config.maxPalletPayloadHeight):
                 return {
                     name: this.name.modul,
-                    price: this.price.link,
+                    price: this.price.modul,
                     colors: this.colors,
                 };
 
