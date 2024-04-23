@@ -1,6 +1,6 @@
 import { anotherSides } from "../../utils/anotherSides";
 import { longestSide } from "../../utils/longestSide";
-import { gabariteWeight } from "../../utils/gabariteWeight";
+import { getGabariteWeight } from "../../utils/getGabariteWeight";
 import { prices } from "../prices";
 import { ICourier, ISuitableCourier, TColors, TPrice } from "../../types/ICourier";
 import { config } from "../../config";
@@ -38,7 +38,7 @@ export class Dpd implements ICourier {
 
         const shortSides = anotherSides(a, b, c);
         const longest = longestSide(a, b, c);
-        const gabarite = gabariteWeight(a, b, c);
+        const gabariteWeight = getGabariteWeight(a, b, c);
 
         switch (true) {
             // weight check (31.5)
@@ -54,7 +54,7 @@ export class Dpd implements ICourier {
                 return null;
 
             // gabarite weight check
-            case w <= 10 && gabarite > 25:
+            case w <= 10 && gabariteWeight > 25:
                 return null;
 
             // weight check (5 - 10)

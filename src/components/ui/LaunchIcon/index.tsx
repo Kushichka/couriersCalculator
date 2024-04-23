@@ -5,7 +5,7 @@ export const LaunchIcon = ({ link }: { link: string }) => {
     return (
         <Launch
             fontSize="small"
-            onClick={link ? () => window.open(link, "download") : undefined}
+            onClick={link ? () => window.open(link) : undefined}
             sx={{ cursor: "pointer" }}
         />
     );
