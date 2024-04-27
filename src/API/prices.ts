@@ -1,8 +1,8 @@
-import { TPrice } from "../types/ICourier";
+import { TCourierPrice } from "../types/ICourier";
 
 interface IPrices {
     [key: string]: {
-        [key: string]: TPrice;
+        [key: string]: TCourierPrice;
     };
 }
 
@@ -44,7 +44,7 @@ export const prices: IPrices = {
         pocztex2xl: { standard: "30,14", onDelivery: "32,90" },
     },
     schenker: {
-        link: {
+        checkPrice: {
             link: "https://docs.google.com/spreadsheets/d/1qMCcBj0Y7zvZS_L0X_Txp04p9Fng0qJc7eu845X5BFk/edit#gid=1203923558",
         },
     },

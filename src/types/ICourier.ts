@@ -1,10 +1,19 @@
-export type TPrice = { standard?: string; onDelivery?: string; link?: string };
+export type TPrice = {
+    standard: string;
+    onDelivery: string;
+};
+
+export type TLink = {
+    link: string;
+};
+
+export type TCourierPrice = TPrice | TLink;
 
 export type TColors = { bgColor: string; fontColor: string };
 
 export interface ISuitableCourier {
     name: string;
-    price: TPrice;
+    price: TCourierPrice;
     colors: TColors;
     logo?: string;
 }
@@ -21,7 +30,7 @@ export interface ICourier {
         [key: string]: string;
     };
     price: {
-        [key: string]: TPrice;
+        [key: string]: TCourierPrice;
     };
     colors: TColors;
     logo?: React.ReactNode;

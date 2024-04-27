@@ -12,7 +12,7 @@ export const ResultTableRow = () => {
     return suitableCouriers.map((item, index) => (
         <TableRow
             key={index}
-            sx={{ bgcolor: item?.colors.bgColor }}
+            sx={{ bgcolor: item.colors.bgColor }}
         >
             <TableCell
                 component="th"
@@ -20,7 +20,7 @@ export const ResultTableRow = () => {
                 sx={{
                     fontSize: "1rem",
                     fontWeight: 600,
-                    color: item?.colors.fontColor,
+                    color: item.colors.fontColor,
                     borderColor: config.borderColor,
                 }}
             >
@@ -43,7 +43,7 @@ export const ResultTableRow = () => {
                     borderColor: config.borderColor,
                 }}
             >
-                {item?.price.link ? (
+                {"link" in item.price ? (
                     <Box
                         display="flex"
                         alignItems="center"
@@ -51,11 +51,13 @@ export const ResultTableRow = () => {
                         gap="0.5rem"
                     >
                         Sprawdź
-                        <LaunchIcon link={item?.price.link} />
+                        <LaunchIcon link={item.price.link} />
                     </Box>
-                ) : null}
-
-                {payment ? item?.price.onDelivery : item?.price.standard}
+                ) : payment ? (
+                    item.price.onDelivery
+                ) : (
+                    item.price.standard
+                )}
             </TableCell>
         </TableRow>
     ));
