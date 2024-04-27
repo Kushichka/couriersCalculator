@@ -1,4 +1,4 @@
-import { ICourier, ISuitableCourier, TColors, TCourierPrice, TPrice } from "../../types/ICourier";
+import { ICourier, ISuitableCourier, TColors, TCourierPrice } from "../../types/ICourier";
 import { anotherSides } from "../../utils/anotherSides";
 import { longestSide } from "../../utils/longestSide";
 import { prices } from "../prices";
@@ -45,7 +45,7 @@ export class Schenker implements ICourier {
                 shortSides[1] <= config.halfPalletDimensions.width &&
                 (shortSides[0] <= config.halfPalletDimensions.length ||
                     shortSides[1] <= config.halfPalletDimensions.length):
-                return { name: this.name.half, price: this.price.checkPrice, colors: this.colors };
+                return { name: this.name.half, price: this.price.CHECK_PRICE, colors: this.colors };
 
             // standard pallet check (185 x 120 x 80)
             case w <= config.maxPalletWeight.standard &&
@@ -56,7 +56,7 @@ export class Schenker implements ICourier {
                     shortSides[1] <= config.standardPalletDimensions.width):
                 return {
                     name: this.name.standard,
-                    price: this.price.checkPrice,
+                    price: this.price.CHECK_PRICE,
                     colors: this.colors,
                 };
 
@@ -69,7 +69,7 @@ export class Schenker implements ICourier {
                     shortSides[1] <= config.maxPalletPayloadHeight):
                 return {
                     name: this.name.modul,
-                    price: this.price.checkPrice,
+                    price: this.price.CHECK_PRICE,
                     colors: this.colors,
                 };
 

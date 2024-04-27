@@ -1,7 +1,7 @@
 import { anotherSides } from "../../utils/anotherSides";
 import { longestSide } from "../../utils/longestSide";
 import { prices } from "../prices";
-import { ICourier, ISuitableCourier, TColors, TPrice } from "../../types/ICourier";
+import { ICourier, ISuitableCourier, TColors, TCourierPrice } from "../../types/ICourier";
 import { config } from "../../config";
 
 export class Inpost implements ICourier {
@@ -9,15 +9,15 @@ export class Inpost implements ICourier {
         [key: string]: string;
     };
     price: {
-        [key: string]: TPrice;
+        [key: string]: TCourierPrice;
     };
     colors: TColors;
 
     constructor() {
         this.name = {
-            paczkomatA: 'InPost paczkomat "A"',
-            paczkomatB: 'InPost paczkomat "B"',
-            paczkomatC: 'InPost paczkomat "C"',
+            PACZKOMAT_A: 'InPost paczkomat "A"',
+            PACZKOMAT_B: 'InPost paczkomat "B"',
+            PACZKOMAT_C: 'InPost paczkomat "C"',
         };
         this.price = prices.inpost;
         this.colors = {
@@ -44,24 +44,24 @@ export class Inpost implements ICourier {
             // paczkomatA check (63 x 38 x 8)
             case shortSides[0] <= 38 && shortSides[1] <= 38 && (shortSides[0] <= 8 || shortSides[1] <= 8):
                 return {
-                    name: this.name.paczkomatA,
-                    price: this.price.paczkomatA,
+                    name: this.name.PACZKOMAT_A,
+                    price: this.price.PACZKOMAT_A,
                     colors: this.colors,
                 };
 
             // paczkomatB check (63 x 38 x 19)
             case shortSides[0] <= 38 && shortSides[1] <= 38 && (shortSides[0] <= 19 || shortSides[1] <= 19):
                 return {
-                    name: this.name.paczkomatB,
-                    price: this.price.paczkomatB,
+                    name: this.name.PACZKOMAT_B,
+                    price: this.price.PACZKOMAT_B,
                     colors: this.colors,
                 };
 
             // paczkomatC check (63 x 41 x 38)
             case shortSides[0] <= 41 && shortSides[1] <= 41 && (shortSides[0] <= 38 || shortSides[1] <= 38):
                 return {
-                    name: this.name.paczkomatC,
-                    price: this.price.paczkomatC,
+                    name: this.name.PACZKOMAT_C,
+                    price: this.price.PACZKOMAT_C,
                     colors: this.colors,
                 };
 

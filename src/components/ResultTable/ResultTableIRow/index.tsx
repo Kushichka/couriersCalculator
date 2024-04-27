@@ -5,11 +5,13 @@ import { Context } from "../../../Context";
 import { TContext } from "../../../types/TContext";
 import { LaunchIcon } from "../../ui/LaunchIcon";
 import { config } from "../../../config";
+import { sortCouriers } from "../../../utils/sortCouriers";
 
 export const ResultTableRow = () => {
     const { suitableCouriers, payment } = useContext(Context) as TContext;
+    const sortedCouriers = sortCouriers(suitableCouriers, payment);
 
-    return suitableCouriers.map((item, index) => (
+    return sortedCouriers.map((item, index) => (
         <TableRow
             key={index}
             sx={{ bgcolor: item.colors.bgColor }}

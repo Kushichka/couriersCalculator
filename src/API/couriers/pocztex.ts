@@ -1,5 +1,5 @@
 import { config } from "../../config";
-import { ICourier, ISuitableCourier, TColors, TPrice } from "../../types/ICourier";
+import { ICourier, ISuitableCourier, TColors, TCourierPrice } from "../../types/ICourier";
 import { anotherSides } from "../../utils/anotherSides";
 import { longestSide } from "../../utils/longestSide";
 import { prices } from "../prices";
@@ -9,17 +9,17 @@ export class Pocztex implements ICourier {
         [key: string]: string;
     };
     price: {
-        [key: string]: TPrice;
+        [key: string]: TCourierPrice;
     };
     colors: TColors;
 
     constructor() {
         this.name = {
-            pocztexS: "Pocztex S",
-            pocztexM: "Pocztex M",
-            pocztexL: "Pocztex L",
-            pocztexXl: "Pocztex XL",
-            pocztex2xl: "Pocztex 2XL",
+            POCZTEX_S: "Pocztex S",
+            POCZTEX_M: "Pocztex M",
+            POCZTEX_L: "Pocztex L",
+            POCZTEX_XL: "Pocztex XL",
+            POCZTEX_2XL: "Pocztex 2XL",
         };
         this.price = prices.pocztex;
         this.colors = {
@@ -50,8 +50,8 @@ export class Pocztex implements ICourier {
             // pocztex 2XL (65 x 42 x 40 ), weight <= 30
             case longest > 70 || a + b + c > 190:
                 return {
-                    name: this.name.pocztex2xl,
-                    price: this.price.pocztex2xl,
+                    name: this.name.POCZTEX_2XL,
+                    price: this.price.POCZTEX_2XL,
                     colors: this.colors,
                 };
 
@@ -62,8 +62,8 @@ export class Pocztex implements ICourier {
                 shortSides[1] <= 40 &&
                 (shortSides[0] <= 9 || shortSides[1] <= 9):
                 return {
-                    name: this.name.pocztexS,
-                    price: this.price.pocztexS,
+                    name: this.name.POCZTEX_S,
+                    price: this.price.POCZTEX_S,
                     colors: this.colors,
                 };
 
@@ -74,8 +74,8 @@ export class Pocztex implements ICourier {
                 shortSides[1] <= 40 &&
                 (shortSides[0] <= 20 || shortSides[1] <= 20):
                 return {
-                    name: this.name.pocztexM,
-                    price: this.price.pocztexM,
+                    name: this.name.POCZTEX_M,
+                    price: this.price.POCZTEX_M,
                     colors: this.colors,
                 };
 
@@ -86,16 +86,16 @@ export class Pocztex implements ICourier {
                 shortSides[1] <= 42 &&
                 (shortSides[0] <= 40 || shortSides[1] <= 40):
                 return {
-                    name: this.name.pocztexL,
-                    price: this.price.pocztexL,
+                    name: this.name.POCZTEX_L,
+                    price: this.price.POCZTEX_L,
                     colors: this.colors,
                 };
 
             // pocztex XL (70 x 60 x 60 ), weight <= 20
             case w <= 20 && longest <= 70 && shortSides[0] <= 60 && shortSides[1] <= 60:
                 return {
-                    name: this.name.pocztexXl,
-                    price: this.price.pocztexXl,
+                    name: this.name.POCZTEX_XL,
+                    price: this.price.POCZTEX_XL,
                     colors: this.colors,
                 };
 

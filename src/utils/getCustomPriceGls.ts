@@ -1,8 +1,11 @@
 import { prices } from "../API/prices";
-import { TPrice } from "../types/ICourier";
+import { TCourierPrice, TPrice } from "../types/ICourier";
 
-export const getCustomPriceGls = (weight: number) => {
-    let price: TPrice = {};
+export const getCustomPriceGls = (weight: number): TCourierPrice => {
+    let price: TCourierPrice = {
+        standard: "",
+        onDelivery: "",
+    };
 
     if (weight <= 2) {
         price = prices.gls.WEIGHT_FROM_0_TO_2;
@@ -20,8 +23,8 @@ export const getCustomPriceGls = (weight: number) => {
         price = prices.gls.WEIGHT_FROM_25_TO_31;
     }
 
-    const standardPrice = parseFloat(price.standard ? price.standard.replace(",", ".") : "0") + 80;
-    const onDeliveryPrice = parseFloat(price.onDelivery ? price.onDelivery.replace(",", ".") : "0") + 80;
+    const standardPrice = parseFloat("standard" in price ? price.standard.replace(",", ".") : "0") + 80;
+    const onDeliveryPrice = parseFloat("onDelivery" in price ? price.onDelivery.replace(",", ".") : "0") + 80;
 
     return {
         standard: standardPrice.toFixed(2).replace(".", ","),

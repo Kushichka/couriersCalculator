@@ -2,7 +2,7 @@ import { anotherSides } from "../../utils/anotherSides";
 import { longestSide } from "../../utils/longestSide";
 import { getGabariteWeight } from "../../utils/getGabariteWeight";
 import { prices } from "../prices";
-import { ICourier, ISuitableCourier, TColors, TPrice } from "../../types/ICourier";
+import { ICourier, ISuitableCourier, TColors, TCourierPrice } from "../../types/ICourier";
 import { config } from "../../config";
 // import { images } from "../../assets/images";
 
@@ -11,19 +11,19 @@ export class Dpd implements ICourier {
         [key: string]: string;
     };
     price: {
-        [key: string]: TPrice;
+        [key: string]: TCourierPrice;
     };
     colors: TColors;
     logo: string;
     constructor() {
         this.name = {
-            weightFrom0To2: "DPD (do 2 kg)",
-            weightFrom2To5: "DPD (do 5 kg)",
-            weightFrom5To10: "DPD (do 10 kg)",
-            weightFrom10To15: "DPD (do 15 kg)",
-            weightFrom15To20: "DPD (do 20 kg)",
-            weightFrom20To25: "DPD (do 25 kg)",
-            weightFrom25To31: "DPD (do 31,5 kg)",
+            WEIGHT_FROM_0_TO_2: "DPD (do 2 kg)",
+            WEIGHT_FROM_2_TO_5: "DPD (do 5 kg)",
+            WEIGHT_FROM_5_TO_10: "DPD (do 10 kg)",
+            WEIGHT_FROM_10_TO_15: "DPD (do 15 kg)",
+            WEIGHT_FROM_15_TO_20: "DPD (do 20 kg)",
+            WEIGHT_FROM_20_TO_25: "DPD (do 25 kg)",
+            WEIGHT_FROM_25_TO_31: "DPD (do 31,5 kg)",
         };
         this.price = prices.dpd;
         this.colors = {
@@ -42,7 +42,7 @@ export class Dpd implements ICourier {
 
         switch (true) {
             // weight check (31.5)
-            case w > 31.5:
+            case w > config.maxParcelWeight:
                 return null;
 
             // longest side check (150)
@@ -53,48 +53,52 @@ export class Dpd implements ICourier {
             case 2 * shortSides[0] + 2 * shortSides[1] + longest > 300:
                 return null;
 
-            // gabarite weight check
-            case w <= 10 && gabariteWeight > 25:
-                return null;
-
-            // weight check (5 - 10)
-            case w > 5 && w <= 10:
+            case w <= 2:
                 return {
-                    name: this.name.weightFrom5To10,
-                    price: this.price.weightFrom5To10,
+                    name: this.name.WEIGHT_FROM_0_TO_2,
+                    price: this.price.WEIGHT_FROM_0_TO_2,
                     colors: this.colors,
                 };
 
-            // weight check (10 - 15)
-            case w > 10 && w <= 15:
+            case w <= 5:
                 return {
-                    name: this.name.weightFrom10To15,
-                    price: this.price.weightFrom10To15,
+                    name: this.name.WEIGHT_FROM_2_TO_5,
+                    price: this.price.WEIGHT_FROM_2_TO_5,
                     colors: this.colors,
                 };
 
-            // weight check (15 - 20)
-            case w > 15 && w <= 20:
+            case w <= 10:
                 return {
-                    name: this.name.weightFrom15To20,
-                    price: this.price.weightFrom15To20,
-                    colors: this.colors,
-                    // logo: this.logo,
-                };
-
-            // weight check (20 - 25)
-            case w > 20 && w <= 25:
-                return {
-                    name: this.name.weightFrom20To25,
-                    price: this.price.weightFrom20To25,
+                    name: this.name.WEIGHT_FROM_5_TO_10,
+                    price: this.price.WEIGHT_FROM_5_TO_10,
                     colors: this.colors,
                 };
 
-            // weight check (25 - 31.5)
-            case w > 25:
+            case w <= 15:
                 return {
-                    name: this.name.weightFrom25To31,
-                    price: this.price.weightFrom25To31,
+                    name: this.name.WEIGHT_FROM_10_TO_15,
+                    price: this.price.WEIGHT_FROM_10_TO_15,
+                    colors: this.colors,
+                };
+
+            case w <= 20:
+                return {
+                    name: this.name.WEIGHT_FROM_15_TO_20,
+                    price: this.price.WEIGHT_FROM_15_TO_20,
+                    colors: this.colors,
+                };
+
+            case w <= 25:
+                return {
+                    name: this.name.WEIGHT_FROM_20_TO_25,
+                    price: this.price.WEIGHT_FROM_20_TO_25,
+                    colors: this.colors,
+                };
+
+            case w <= 31.5:
+                return {
+                    name: this.name.WEIGHT_FROM_25_TO_31,
+                    price: this.price.WEIGHT_FROM_25_TO_31,
                     colors: this.colors,
                 };
 

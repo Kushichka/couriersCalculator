@@ -2,7 +2,7 @@ import { anotherSides } from "../../utils/anotherSides";
 import { longestSide } from "../../utils/longestSide";
 import { isCustomParcelGls } from "../../utils/isCustomParcelGls";
 import { prices } from "../prices";
-import { ICourier, ISuitableCourier, TColors, TPrice } from "../../types/ICourier";
+import { ICourier, ISuitableCourier, TColors, TCourierPrice } from "../../types/ICourier";
 import { config } from "../../config";
 import { getCustomPriceGls } from "../../utils/getCustomPriceGls";
 
@@ -11,7 +11,7 @@ export class Gls implements ICourier {
         [key: string]: string;
     };
     price: {
-        [key: string]: TPrice;
+        [key: string]: TCourierPrice;
     };
     colors: TColors;
 
@@ -42,7 +42,7 @@ export class Gls implements ICourier {
 
         switch (true) {
             // custom parcel check
-            case custom:
+            case w < 40 && custom:
                 return {
                     name: this.name.CUSTOM_PARCEL,
                     price: getCustomPriceGls(w),
