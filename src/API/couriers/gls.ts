@@ -42,7 +42,7 @@ export class Gls implements ICourier {
 
         switch (true) {
             // custom parcel check
-            case w < 40 && custom:
+            case custom:
                 return {
                     name: this.name.CUSTOM_PARCEL,
                     price: getCustomPriceGls(w),

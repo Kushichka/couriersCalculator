@@ -2,6 +2,7 @@ import { config } from "../../config";
 import { ICourier, ISuitableCourier, TColors, TCourierPrice } from "../../types/ICourier";
 import { anotherSides } from "../../utils/anotherSides";
 import { longestSide } from "../../utils/longestSide";
+import { withTolerance } from "../../utils/withTolerance";
 import { prices } from "../prices";
 
 export class Pocztex implements ICourier {
@@ -20,6 +21,7 @@ export class Pocztex implements ICourier {
             POCZTEX_L: "Pocztex L",
             POCZTEX_XL: "Pocztex XL",
             POCZTEX_2XL: "Pocztex 2XL",
+            POCZTEX_2XL_CUSTOM: "Pocztex 2XL (paczka niestandardowa)",
         };
         this.price = prices.pocztex;
         this.colors = {
@@ -35,20 +37,32 @@ export class Pocztex implements ICourier {
         const longest = longestSide(a, b, c);
 
         switch (true) {
-            // weight check (20)
+            // package check (a + b + c) <= 300
+            case a + b + c > 300:
+                return null;
+
+            // longest side check 150 + tolerance 5%
+            case longest > withTolerance(150, config.tolerance):
+                return null;
+
+            // weight check (30)
             case w > 30:
                 return null;
 
-            // package check (a + b + c) <= 250
-            case a + b + c > 250:
+            // pocztex 2XL custom, (a + b + c) <= 250, longest < 120
+            case longest > config.longestParcelSide.pocztex || a + b + c > 250:
+                return {
+                    name: this.name.POCZTEX_2XL_CUSTOM,
+                    price: this.price.POCZTEX_2XL_CUSTOM,
+                    colors: this.colors,
+                };
+
+            // longest side check 120 + tolerance 5%
+            case longest > withTolerance(config.longestParcelSide.pocztex, config.tolerance):
                 return null;
 
-            // longest side check (120)
-            case longest > config.longestParcelSide.pocztex:
-                return null;
-
-            // pocztex 2XL (65 x 42 x 40 ), weight <= 30
-            case longest > 70 || a + b + c > 190:
+            // pocztex 2XL, weight <= 30
+            case w > 20 || longest > 70 || shortSides[0] > 60 || shortSides[1] > 60:
                 return {
                     name: this.name.POCZTEX_2XL,
                     price: this.price.POCZTEX_2XL,

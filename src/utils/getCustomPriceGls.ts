@@ -1,5 +1,5 @@
 import { prices } from "../API/prices";
-import { TCourierPrice, TPrice } from "../types/ICourier";
+import { TCourierPrice } from "../types/ICourier";
 
 export const getCustomPriceGls = (weight: number): TCourierPrice => {
     let price: TCourierPrice = {
@@ -27,7 +27,7 @@ export const getCustomPriceGls = (weight: number): TCourierPrice => {
     const onDeliveryPrice = parseFloat("onDelivery" in price ? price.onDelivery.replace(",", ".") : "0") + 80;
 
     return {
-        standard: standardPrice.toFixed(2).replace(".", ","),
-        onDelivery: onDeliveryPrice.toFixed(2).replace(".", ","),
+        standard: isNaN(standardPrice) ? "Brak" : standardPrice.toFixed(2).replace(".", ","), // isNaN is a temporary solution
+        onDelivery: isNaN(onDeliveryPrice) ? "Brak" : onDeliveryPrice.toFixed(2).replace(".", ","), // isNaN is a temporary solution
     };
 };

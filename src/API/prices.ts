@@ -42,6 +42,7 @@ export const prices: IPrices = {
         POCZTEX_L: { standard: "15,00", onDelivery: "17,76" },
         POCZTEX_XL: { standard: "21,52", onDelivery: "24,28" },
         POCZTEX_2XL: { standard: "30,14", onDelivery: "32,90" },
+        POCZTEX_2XL_CUSTOM: { standard: "50,24(Fake)", onDelivery: "55,16(Fake)" },
     },
     schenker: {
         CHECK_PRICE: {
