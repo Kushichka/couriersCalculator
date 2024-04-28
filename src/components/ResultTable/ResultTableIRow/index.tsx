@@ -37,11 +37,22 @@ export const ResultTableRow = () => {
                 {item?.name}
             </TableCell>
             <TableCell
+                align="center"
+                sx={{
+                    fontSize: "1rem",
+                    fontWeight: 600,
+                    color: item.colors.fontColor,
+                    borderColor: config.borderColor,
+                }}
+            >
+                {item?.description}
+            </TableCell>
+            <TableCell
                 align="right"
                 sx={{
                     fontSize: "1rem",
                     fontWeight: 600,
-                    color: item?.colors.fontColor,
+                    color: item.colors.fontColor,
                     borderColor: config.borderColor,
                 }}
             >

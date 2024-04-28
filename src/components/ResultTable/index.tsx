@@ -19,17 +19,30 @@ export const ResultTable = () => {
                                 fontSize: "1.2rem",
                                 color: "#343434",
                                 borderColor: config.borderColor,
+                                minWidth: "33.33%",
                             }}
                         >
                             Kurier
                         </TableCell>
                         <TableCell
+                            align="center"
                             sx={{
                                 fontSize: "1.2rem",
                                 color: "#343434",
                                 borderColor: config.borderColor,
+                                minWidth: "33.33%",
                             }}
+                        >
+                            Opis
+                        </TableCell>
+                        <TableCell
                             align="right"
+                            sx={{
+                                fontSize: "1.2rem",
+                                color: "#343434",
+                                borderColor: config.borderColor,
+                                minWidth: "33.33%",
+                            }}
                         >
                             Cena&nbsp;(zł)
                         </TableCell>

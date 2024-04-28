@@ -7,7 +7,8 @@ import { config } from "../../config";
 import { getCustomPriceGls } from "../../utils/getCustomPriceGls";
 
 export class Gls implements ICourier {
-    name: {
+    name: string;
+    description: {
         [key: string]: string;
     };
     price: {
@@ -16,15 +17,16 @@ export class Gls implements ICourier {
     colors: TColors;
 
     constructor() {
-        this.name = {
-            WEIGHT_FROM_0_TO_2: "GLS (do 2 kg)",
-            WEIGHT_FROM_2_TO_5: "GLS (do 5 kg)",
-            WEIGHT_FROM_5_TO_10: "GLS (do 10 kg)",
-            WEIGHT_FROM_10_TO_15: "GLS (do 15 kg)",
-            WEIGHT_FROM_15_TO_20: "GLS (do 20 kg)",
-            WEIGHT_FROM_20_TO_25: "GLS (do 25 kg)",
-            WEIGHT_FROM_25_TO_31: "GLS (do 31,5 kg)",
-            CUSTOM_PARCEL: "GLS (paczka niestandardowa)",
+        this.name = "GLS";
+        this.description = {
+            WEIGHT_FROM_0_TO_2: "do 2 kg",
+            WEIGHT_FROM_2_TO_5: "do 5 kg",
+            WEIGHT_FROM_5_TO_10: "do 10 kg",
+            WEIGHT_FROM_10_TO_15: "do 15 kg",
+            WEIGHT_FROM_15_TO_20: "do 20 kg",
+            WEIGHT_FROM_20_TO_25: "do 25 kg",
+            WEIGHT_FROM_25_TO_31: "do 31,5 kg",
+            CUSTOM_PARCEL: "paczka niestandardowa",
         };
         this.price = prices.gls;
         this.colors = {
@@ -44,7 +46,8 @@ export class Gls implements ICourier {
             // custom parcel check
             case custom:
                 return {
-                    name: this.name.CUSTOM_PARCEL,
+                    name: this.name as string,
+                    description: this.description.CUSTOM_PARCEL,
                     price: getCustomPriceGls(w),
                     colors: this.colors,
                 };
@@ -63,49 +66,56 @@ export class Gls implements ICourier {
 
             case w <= 2:
                 return {
-                    name: this.name.WEIGHT_FROM_0_TO_2,
+                    name: this.name as string,
+                    description: this.description.WEIGHT_FROM_0_TO_2,
                     price: this.price.WEIGHT_FROM_0_TO_2,
                     colors: this.colors,
                 };
 
             case w <= 5:
                 return {
-                    name: this.name.WEIGHT_FROM_2_TO_5,
+                    name: this.name as string,
+                    description: this.description.WEIGHT_FROM_2_TO_5,
                     price: this.price.WEIGHT_FROM_2_TO_5,
                     colors: this.colors,
                 };
 
             case w <= 10:
                 return {
-                    name: this.name.WEIGHT_FROM_5_TO_10,
+                    name: this.name as string,
+                    description: this.description.WEIGHT_FROM_5_TO_10,
                     price: this.price.WEIGHT_FROM_5_TO_10,
                     colors: this.colors,
                 };
 
             case w <= 15:
                 return {
-                    name: this.name.WEIGHT_FROM_10_TO_15,
+                    name: this.name as string,
+                    description: this.description.WEIGHT_FROM_10_TO_15,
                     price: this.price.WEIGHT_FROM_10_TO_15,
                     colors: this.colors,
                 };
 
             case w <= 20:
                 return {
-                    name: this.name.WEIGHT_FROM_15_TO_20,
+                    name: this.name as string,
+                    description: this.description.WEIGHT_FROM_15_TO_20,
                     price: this.price.WEIGHT_FROM_15_TO_20,
                     colors: this.colors,
                 };
 
             case w <= 25:
                 return {
-                    name: this.name.WEIGHT_FROM_20_TO_25,
+                    name: this.name as string,
+                    description: this.description.WEIGHT_FROM_20_TO_25,
                     price: this.price.WEIGHT_FROM_20_TO_25,
                     colors: this.colors,
                 };
 
             case w <= 31.5:
                 return {
-                    name: this.name.WEIGHT_FROM_25_TO_31,
+                    name: this.name as string,
+                    description: this.description.WEIGHT_FROM_25_TO_31,
                     price: this.price.WEIGHT_FROM_25_TO_31,
                     colors: this.colors,
                 };

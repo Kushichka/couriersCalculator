@@ -5,7 +5,8 @@ import { ICourier, ISuitableCourier, TColors, TCourierPrice } from "../../types/
 import { config } from "../../config";
 
 export class Dhl implements ICourier {
-    name: {
+    name: string;
+    description: {
         [key: string]: string;
     };
     price: {
@@ -14,11 +15,12 @@ export class Dhl implements ICourier {
     colors: TColors;
 
     constructor() {
-        this.name = {
-            WEIGHT_FROM_0_TO_5: "DHL (do 5 kg)",
-            WEIGHT_FROM_5_TO_10: "DHL (do 10 kg)",
-            WEIGHT_FROM_10_TO_20: "DHL (do 20 kg)",
-            WEIGHT_FROM_20_TO_31: "DHL (do 31,5 kg)",
+        this.name = "DHL";
+        this.description = {
+            WEIGHT_FROM_0_TO_5: "do 5 kg",
+            WEIGHT_FROM_5_TO_10: "do 10 kg",
+            WEIGHT_FROM_10_TO_20: "do 20 kg",
+            WEIGHT_FROM_20_TO_31: "do 31,5 kg",
         };
         this.price = prices.dhl;
         this.colors = {
@@ -49,7 +51,8 @@ export class Dhl implements ICourier {
             // weight check (0 - 5)
             case w <= 5:
                 return {
-                    name: this.name.WEIGHT_FROM_0_TO_5,
+                    name: this.name as string,
+                    description: this.description.WEIGHT_FROM_0_TO_5,
                     price: this.price.WEIGHT_FROM_0_TO_5,
                     colors: this.colors,
                 };
@@ -57,7 +60,8 @@ export class Dhl implements ICourier {
             // weight check (5 - 10)
             case w > 5 && w <= 10:
                 return {
-                    name: this.name.WEIGHT_FROM_5_TO_10,
+                    name: this.name as string,
+                    description: this.description.WEIGHT_FROM_5_TO_10,
                     price: this.price.WEIGHT_FROM_5_TO_10,
                     colors: this.colors,
                 };
@@ -65,7 +69,8 @@ export class Dhl implements ICourier {
             // weight check (10 - 20)
             case w > 10 && w <= 20:
                 return {
-                    name: this.name.WEIGHT_FROM_10_TO_20,
+                    name: this.name as string,
+                    description: this.description.WEIGHT_FROM_10_TO_20,
                     price: this.price.WEIGHT_FROM_10_TO_20,
                     colors: this.colors,
                 };
@@ -73,7 +78,8 @@ export class Dhl implements ICourier {
             // weight check (5 - 10)
             case w > 20 && w <= 31.5:
                 return {
-                    name: this.name.WEIGHT_FROM_20_TO_31,
+                    name: this.name as string,
+                    description: this.description.WEIGHT_FROM_20_TO_31,
                     price: this.price.WEIGHT_FROM_20_TO_31,
                     colors: this.colors,
                 };

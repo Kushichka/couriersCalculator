@@ -5,7 +5,8 @@ import { ICourier, ISuitableCourier, TColors, TCourierPrice } from "../../types/
 import { config } from "../../config";
 
 export class Inpost implements ICourier {
-    name: {
+    name: string;
+    description: {
         [key: string]: string;
     };
     price: {
@@ -14,10 +15,11 @@ export class Inpost implements ICourier {
     colors: TColors;
 
     constructor() {
-        this.name = {
-            PACZKOMAT_A: 'InPost paczkomat "A"',
-            PACZKOMAT_B: 'InPost paczkomat "B"',
-            PACZKOMAT_C: 'InPost paczkomat "C"',
+        this.name = "InPost";
+        this.description = {
+            PACZKOMAT_A: 'paczkomat "A"',
+            PACZKOMAT_B: 'paczkomat "B"',
+            PACZKOMAT_C: 'paczkomat "C"',
         };
         this.price = prices.inpost;
         this.colors = {
@@ -44,7 +46,8 @@ export class Inpost implements ICourier {
             // paczkomatA check (63 x 38 x 8)
             case shortSides[0] <= 38 && shortSides[1] <= 38 && (shortSides[0] <= 8 || shortSides[1] <= 8):
                 return {
-                    name: this.name.PACZKOMAT_A,
+                    name: this.name as string,
+                    description: this.description.PACZKOMAT_A,
                     price: this.price.PACZKOMAT_A,
                     colors: this.colors,
                 };
@@ -52,7 +55,8 @@ export class Inpost implements ICourier {
             // paczkomatB check (63 x 38 x 19)
             case shortSides[0] <= 38 && shortSides[1] <= 38 && (shortSides[0] <= 19 || shortSides[1] <= 19):
                 return {
-                    name: this.name.PACZKOMAT_B,
+                    name: this.name as string,
+                    description: this.description.PACZKOMAT_B,
                     price: this.price.PACZKOMAT_B,
                     colors: this.colors,
                 };
@@ -60,7 +64,8 @@ export class Inpost implements ICourier {
             // paczkomatC check (63 x 41 x 38)
             case shortSides[0] <= 41 && shortSides[1] <= 41 && (shortSides[0] <= 38 || shortSides[1] <= 38):
                 return {
-                    name: this.name.PACZKOMAT_C,
+                    name: this.name as string,
+                    description: this.description.PACZKOMAT_C,
                     price: this.price.PACZKOMAT_C,
                     colors: this.colors,
                 };
