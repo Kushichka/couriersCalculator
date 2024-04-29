@@ -1,5 +1,3 @@
-import { anotherSides } from "../../utils/anotherSides";
-import { longestSide } from "../../utils/longestSide";
 import { isCustomParcelGls } from "../../utils/isCustomParcelGls";
 import { prices } from "../prices";
 import { ICourier, ISuitableCourier, TCourierPrice } from "../../types/ICourier";
@@ -36,11 +34,13 @@ export class Gls implements ICourier {
     calculatePrice(weight: string, sideA: string, sideB: string, sideC: string): ISuitableCourier | null {
         const [w, a, b, c] = [weight, sideA, sideB, sideC].map(parseFloat);
 
-        const shortSides = anotherSides(a, b, c);
-        const longest = longestSide(a, b, c);
-        const custom = isCustomParcelGls(w, a, b, c);
+        const custom = isCustomParcelGls(a, b, c);
 
         switch (true) {
+            // weight check
+            case w > config.maxParcelWeight:
+                return null;
+
             // custom parcel check
             case custom:
                 return {
@@ -49,18 +49,6 @@ export class Gls implements ICourier {
                     description: this.description.CUSTOM_PARCEL,
                     price: getCustomPriceGls(w),
                 };
-
-            // weight check
-            case w > config.maxParcelWeight:
-                return null;
-
-            // longest side check
-            case longest > config.longestParcelSide.gls:
-                return null;
-
-            // 300 - max for GLS
-            case 2 * shortSides[0] + 2 * shortSides[1] + longest > 300:
-                return null;
 
             case w <= 2:
                 return {

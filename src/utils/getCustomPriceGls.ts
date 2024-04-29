@@ -27,7 +27,7 @@ export const getCustomPriceGls = (weight: number): TCourierPrice => {
     const onDeliveryPrice = parseFloat("onDelivery" in price ? price.onDelivery.replace(",", ".") : "0") + 80;
 
     return {
-        standard: isNaN(standardPrice) ? "Brak" : standardPrice.toFixed(2).replace(".", ","), // isNaN is a temporary solution
-        onDelivery: isNaN(onDeliveryPrice) ? "Brak" : onDeliveryPrice.toFixed(2).replace(".", ","), // isNaN is a temporary solution
+        standard: standardPrice.toFixed(2).replace(".", ","),
+        onDelivery: onDeliveryPrice.toFixed(2).replace(".", ","),
     };
 };
