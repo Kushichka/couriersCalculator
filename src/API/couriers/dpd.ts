@@ -1,10 +1,11 @@
 import { anotherSides } from "../../utils/anotherSides";
 import { longestSide } from "../../utils/longestSide";
-// import { getGabariteWeight } from "../../utils/getGabariteWeight";
 import { prices } from "../prices";
 import { ICourier, ISuitableCourier, TCourierPrice } from "../../types/ICourier";
 import { config } from "../../config";
 import { logos } from "../../assets/logos";
+import { isCustomParcelDpd } from "../../utils/isCustomParcelDpd";
+import { getCustomPriceDpd } from "../../utils/getCustomPriceDpd";
 
 export class Dpd implements ICourier {
     name: string;
@@ -26,6 +27,7 @@ export class Dpd implements ICourier {
             WEIGHT_FROM_15_TO_20: "do 20 kg",
             WEIGHT_FROM_20_TO_25: "do 25 kg",
             WEIGHT_FROM_25_TO_31: "do 31,5 kg",
+            CUSTOM_PARCEL: "paczka niestandardowa",
         };
         this.price = prices.dpd;
     }
@@ -35,9 +37,17 @@ export class Dpd implements ICourier {
 
         const shortSides = anotherSides(a, b, c);
         const longest = longestSide(a, b, c);
-        // const gabariteWeight = getGabariteWeight(a, b, c);
+        const custom = isCustomParcelDpd(w, a, b, c);
 
         switch (true) {
+            case custom:
+                return {
+                    name: this.name,
+                    logo: this.logo,
+                    description: this.description.CUSTOM_PARCEL,
+                    price: getCustomPriceDpd(w, a, b, c),
+                };
+
             // weight check
             case w > config.maxParcelWeight:
                 return null;
@@ -47,7 +57,7 @@ export class Dpd implements ICourier {
                 return null;
 
             // 300 - max for DPD
-            case 2 * shortSides[0] + 2 * shortSides[1] + longest > 300:
+            case shortSides[0] + shortSides[1] + longest > 300:
                 return null;
 
             case w <= 2:
