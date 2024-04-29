@@ -6,42 +6,33 @@ import { TContext } from "../../../types/TContext";
 import { LaunchIcon } from "../../ui/LaunchIcon";
 import { config } from "../../../config";
 import { sortCouriers } from "../../../utils/sortCouriers";
+import { CourierLogo } from "../../ui/CourierLogo";
 
 export const ResultTableRow = () => {
     const { suitableCouriers, payment } = useContext(Context) as TContext;
     const sortedCouriers = sortCouriers(suitableCouriers, payment);
 
     return sortedCouriers.map((item, index) => (
-        <TableRow
-            key={index}
-            sx={{ bgcolor: item.colors.bgColor }}
-        >
+        <TableRow key={index}>
             <TableCell
                 component="th"
                 scope="row"
                 sx={{
+                    padding: "0 1rem",
+                    height: "3rem",
                     fontSize: "1rem",
                     fontWeight: 600,
-                    color: item.colors.fontColor,
+                    color: item.colors.font,
                     borderColor: config.borderColor,
                 }}
             >
-                {item.logo && (
-                    <img
-                        style={{ width: "50px", height: "100%", marginRight: "10px" }}
-                        src={item.logo}
-                        alt="courier logo"
-                    />
-                )}
-
-                {item?.name}
+                {item.logo && <CourierLogo src={item.logo} />}
             </TableCell>
             <TableCell
                 align="center"
                 sx={{
                     fontSize: "1rem",
                     fontWeight: 600,
-                    color: item.colors.fontColor,
                     borderColor: config.borderColor,
                 }}
             >
@@ -52,7 +43,6 @@ export const ResultTableRow = () => {
                 sx={{
                     fontSize: "1rem",
                     fontWeight: 600,
-                    color: item.colors.fontColor,
                     borderColor: config.borderColor,
                 }}
             >

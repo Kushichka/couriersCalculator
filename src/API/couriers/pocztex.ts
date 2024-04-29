@@ -1,3 +1,4 @@
+import { logos } from "../../assets/logos";
 import { config } from "../../config";
 import { ICourier, ISuitableCourier, TColors, TCourierPrice } from "../../types/ICourier";
 import { anotherSides } from "../../utils/anotherSides";
@@ -6,7 +7,7 @@ import { withTolerance } from "../../utils/withTolerance";
 import { prices } from "../prices";
 
 export class Pocztex implements ICourier {
-    name: string;
+    logo: string;
     description: {
         [key: string]: string;
     };
@@ -16,7 +17,7 @@ export class Pocztex implements ICourier {
     colors: TColors;
 
     constructor() {
-        this.name = "Pocztex";
+        this.logo = logos.pocztex;
         this.description = {
             POCZTEX_S: "paczka S",
             POCZTEX_M: "paczka M",
@@ -26,10 +27,7 @@ export class Pocztex implements ICourier {
             POCZTEX_2XL_CUSTOM: "paczka 2XL niestandardowa",
         };
         this.price = prices.pocztex;
-        this.colors = {
-            bgColor: "#fff",
-            fontColor: "#e31511",
-        };
+        this.colors = { font: "#e31511" };
     }
 
     calculatePrice(weight: string, sideA: string, sideB: string, sideC: string): ISuitableCourier | null {
@@ -54,7 +52,7 @@ export class Pocztex implements ICourier {
             // pocztex 2XL custom, (a + b + c) <= 250, longest < 120
             case longest > config.longestParcelSide.pocztex || a + b + c > 250:
                 return {
-                    name: this.name as string,
+                    logo: this.logo,
                     description: this.description.POCZTEX_2XL_CUSTOM,
                     price: this.price.POCZTEX_2XL_CUSTOM,
                     colors: this.colors,
@@ -67,7 +65,7 @@ export class Pocztex implements ICourier {
             // pocztex 2XL, weight <= 30
             case w > 20 || longest > 70 || shortSides[0] > 60 || shortSides[1] > 60:
                 return {
-                    name: this.name as string,
+                    logo: this.logo,
                     description: this.description.POCZTEX_2XL,
                     price: this.price.POCZTEX_2XL,
                     colors: this.colors,
@@ -80,7 +78,7 @@ export class Pocztex implements ICourier {
                 shortSides[1] <= 40 &&
                 (shortSides[0] <= 9 || shortSides[1] <= 9):
                 return {
-                    name: this.name as string,
+                    logo: this.logo,
                     description: this.description.POCZTEX_S,
                     price: this.price.POCZTEX_S,
                     colors: this.colors,
@@ -93,7 +91,7 @@ export class Pocztex implements ICourier {
                 shortSides[1] <= 40 &&
                 (shortSides[0] <= 20 || shortSides[1] <= 20):
                 return {
-                    name: this.name as string,
+                    logo: this.logo,
                     description: this.description.POCZTEX_M,
                     price: this.price.POCZTEX_M,
                     colors: this.colors,
@@ -106,7 +104,7 @@ export class Pocztex implements ICourier {
                 shortSides[1] <= 42 &&
                 (shortSides[0] <= 40 || shortSides[1] <= 40):
                 return {
-                    name: this.name as string,
+                    logo: this.logo,
                     description: this.description.POCZTEX_L,
                     price: this.price.POCZTEX_L,
                     colors: this.colors,
@@ -115,7 +113,7 @@ export class Pocztex implements ICourier {
             // pocztex XL (70 x 60 x 60 ), weight <= 20
             case w <= 20 && longest <= 70 && shortSides[0] <= 60 && shortSides[1] <= 60:
                 return {
-                    name: this.name as string,
+                    logo: this.logo,
                     description: this.description.POCZTEX_XL,
                     price: this.price.POCZTEX_XL,
                     colors: this.colors,

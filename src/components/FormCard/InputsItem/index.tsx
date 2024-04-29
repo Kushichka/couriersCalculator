@@ -11,15 +11,16 @@ export const InputsItem = memo(() => {
     const { weight, sideA, sideB, sideC } = dimensions;
 
     const inputsData = [
-        { name: "weight", placeholder: "Waga", unit: "kg", value: weight },
+        { name: "weight", placeholder: "Waga", unit: "kg", value: weight, focus: true },
         { name: "sideA", placeholder: "Długość", unit: "cm", value: sideA },
         { name: "sideB", placeholder: "Szerokość", unit: "cm", value: sideB },
         { name: "sideC", placeholder: "Wysokość", unit: "cm", value: sideC },
     ];
 
-    const inputs = inputsData.map(({ placeholder, name, unit, value }) => (
+    const inputs = inputsData.map(({ placeholder, name, unit, value, focus }) => (
         <Grid key={name}>
             <OutlinedInput
+                autoFocus={focus ? true : false}
                 placeholder={placeholder}
                 onChange={(event) => inputHandler(name, event.target.value, setDimension)}
                 value={value}

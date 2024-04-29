@@ -3,9 +3,10 @@ import { anotherSides } from "../../utils/anotherSides";
 import { longestSide } from "../../utils/longestSide";
 import { prices } from "../prices";
 import { config } from "../../config";
+import { logos } from "../../assets/logos";
 
 export class Schenker implements ICourier {
-    name: string;
+    logo: string;
     description: {
         [key: string]: string;
     };
@@ -15,17 +16,14 @@ export class Schenker implements ICourier {
     colors: TColors;
 
     constructor() {
-        this.name = "Schenker";
+        this.logo = logos.schenker;
         this.description = {
             HALF_PALLET: "półpaleta (80 x 60)",
             STANDARD_PALLET: "paleta standardowa (120 x 80)",
             MODUL_PALLET: "moduł",
         };
         this.price = prices.schenker;
-        this.colors = {
-            bgColor: "#fff",
-            fontColor: "#000",
-        };
+        this.colors = { font: "#000" };
     }
 
     calculatePrice(weight: string, sideA: string, sideB: string, sideC: string): ISuitableCourier | null {
@@ -48,7 +46,7 @@ export class Schenker implements ICourier {
                 (shortSides[0] <= config.halfPalletDimensions.length ||
                     shortSides[1] <= config.halfPalletDimensions.length):
                 return {
-                    name: this.name as string,
+                    logo: this.logo,
                     description: this.description.HALF_PALLET,
                     price: this.price.CHECK_PRICE,
                     colors: this.colors,
@@ -62,7 +60,7 @@ export class Schenker implements ICourier {
                 (shortSides[0] <= config.standardPalletDimensions.width ||
                     shortSides[1] <= config.standardPalletDimensions.width):
                 return {
-                    name: this.name as string,
+                    logo: this.logo,
                     description: this.description.STANDARD_PALLET,
                     price: this.price.CHECK_PRICE,
                     colors: this.colors,
@@ -76,7 +74,7 @@ export class Schenker implements ICourier {
                 (shortSides[0] <= config.maxPalletPayloadHeight ||
                     shortSides[1] <= config.maxPalletPayloadHeight):
                 return {
-                    name: this.name as string,
+                    logo: this.logo,
                     description: this.description.MODUL_PALLET,
                     price: this.price.CHECK_PRICE,
                     colors: this.colors,

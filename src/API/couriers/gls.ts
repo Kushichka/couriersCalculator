@@ -5,9 +5,10 @@ import { prices } from "../prices";
 import { ICourier, ISuitableCourier, TColors, TCourierPrice } from "../../types/ICourier";
 import { config } from "../../config";
 import { getCustomPriceGls } from "../../utils/getCustomPriceGls";
+import { logos } from "../../assets/logos";
 
 export class Gls implements ICourier {
-    name: string;
+    logo: string;
     description: {
         [key: string]: string;
     };
@@ -17,7 +18,7 @@ export class Gls implements ICourier {
     colors: TColors;
 
     constructor() {
-        this.name = "GLS";
+        this.logo = logos.gls;
         this.description = {
             WEIGHT_FROM_0_TO_2: "do 2 kg",
             WEIGHT_FROM_2_TO_5: "do 5 kg",
@@ -29,10 +30,7 @@ export class Gls implements ICourier {
             CUSTOM_PARCEL: "paczka niestandardowa",
         };
         this.price = prices.gls;
-        this.colors = {
-            bgColor: "#061ab1",
-            fontColor: "#ffffff",
-        };
+        this.colors = { font: "#ffffff" };
     }
 
     calculatePrice(weight: string, sideA: string, sideB: string, sideC: string): ISuitableCourier | null {
@@ -46,7 +44,7 @@ export class Gls implements ICourier {
             // custom parcel check
             case custom:
                 return {
-                    name: this.name as string,
+                    logo: this.logo,
                     description: this.description.CUSTOM_PARCEL,
                     price: getCustomPriceGls(w),
                     colors: this.colors,
@@ -66,7 +64,7 @@ export class Gls implements ICourier {
 
             case w <= 2:
                 return {
-                    name: this.name as string,
+                    logo: this.logo,
                     description: this.description.WEIGHT_FROM_0_TO_2,
                     price: this.price.WEIGHT_FROM_0_TO_2,
                     colors: this.colors,
@@ -74,7 +72,7 @@ export class Gls implements ICourier {
 
             case w <= 5:
                 return {
-                    name: this.name as string,
+                    logo: this.logo,
                     description: this.description.WEIGHT_FROM_2_TO_5,
                     price: this.price.WEIGHT_FROM_2_TO_5,
                     colors: this.colors,
@@ -82,7 +80,7 @@ export class Gls implements ICourier {
 
             case w <= 10:
                 return {
-                    name: this.name as string,
+                    logo: this.logo,
                     description: this.description.WEIGHT_FROM_5_TO_10,
                     price: this.price.WEIGHT_FROM_5_TO_10,
                     colors: this.colors,
@@ -90,7 +88,7 @@ export class Gls implements ICourier {
 
             case w <= 15:
                 return {
-                    name: this.name as string,
+                    logo: this.logo,
                     description: this.description.WEIGHT_FROM_10_TO_15,
                     price: this.price.WEIGHT_FROM_10_TO_15,
                     colors: this.colors,
@@ -98,7 +96,7 @@ export class Gls implements ICourier {
 
             case w <= 20:
                 return {
-                    name: this.name as string,
+                    logo: this.logo,
                     description: this.description.WEIGHT_FROM_15_TO_20,
                     price: this.price.WEIGHT_FROM_15_TO_20,
                     colors: this.colors,
@@ -106,7 +104,7 @@ export class Gls implements ICourier {
 
             case w <= 25:
                 return {
-                    name: this.name as string,
+                    logo: this.logo,
                     description: this.description.WEIGHT_FROM_20_TO_25,
                     price: this.price.WEIGHT_FROM_20_TO_25,
                     colors: this.colors,
@@ -114,7 +112,7 @@ export class Gls implements ICourier {
 
             case w <= 31.5:
                 return {
-                    name: this.name as string,
+                    logo: this.logo,
                     description: this.description.WEIGHT_FROM_25_TO_31,
                     price: this.price.WEIGHT_FROM_25_TO_31,
                     colors: this.colors,

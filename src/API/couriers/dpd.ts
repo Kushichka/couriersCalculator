@@ -1,13 +1,13 @@
 import { anotherSides } from "../../utils/anotherSides";
 import { longestSide } from "../../utils/longestSide";
-import { getGabariteWeight } from "../../utils/getGabariteWeight";
+// import { getGabariteWeight } from "../../utils/getGabariteWeight";
 import { prices } from "../prices";
 import { ICourier, ISuitableCourier, TColors, TCourierPrice } from "../../types/ICourier";
 import { config } from "../../config";
-// import { images } from "../../assets/images";
+import { logos } from "../../assets/logos";
 
 export class Dpd implements ICourier {
-    name: string;
+    logo: string;
     description: {
         [key: string]: string;
     };
@@ -15,9 +15,8 @@ export class Dpd implements ICourier {
         [key: string]: TCourierPrice;
     };
     colors: TColors;
-    logo: string;
     constructor() {
-        this.name = "DPD";
+        this.logo = logos.dpd;
         this.description = {
             WEIGHT_FROM_0_TO_2: "do 2 kg",
             WEIGHT_FROM_2_TO_5: "do 5 kg",
@@ -28,11 +27,7 @@ export class Dpd implements ICourier {
             WEIGHT_FROM_25_TO_31: "do 31,5 kg",
         };
         this.price = prices.dpd;
-        this.colors = {
-            bgColor: "#dc0032",
-            fontColor: "#414042",
-        };
-        // this.logo = images.logoDpd;
+        this.colors = { font: "#414042" };
     }
 
     calculatePrice(weight: string, sideA: string, sideB: string, sideC: string): ISuitableCourier | null {
@@ -57,7 +52,7 @@ export class Dpd implements ICourier {
 
             case w <= 2:
                 return {
-                    name: this.name as string,
+                    logo: this.logo,
                     description: this.description.WEIGHT_FROM_0_TO_2,
                     price: this.price.WEIGHT_FROM_0_TO_2,
                     colors: this.colors,
@@ -65,7 +60,7 @@ export class Dpd implements ICourier {
 
             case w <= 5:
                 return {
-                    name: this.name as string,
+                    logo: this.logo,
                     description: this.description.WEIGHT_FROM_2_TO_5,
                     price: this.price.WEIGHT_FROM_2_TO_5,
                     colors: this.colors,
@@ -73,7 +68,7 @@ export class Dpd implements ICourier {
 
             case w <= 10:
                 return {
-                    name: this.name as string,
+                    logo: this.logo,
                     description: this.description.WEIGHT_FROM_5_TO_10,
                     price: this.price.WEIGHT_FROM_5_TO_10,
                     colors: this.colors,
@@ -81,7 +76,7 @@ export class Dpd implements ICourier {
 
             case w <= 15:
                 return {
-                    name: this.name as string,
+                    logo: this.logo,
                     description: this.description.WEIGHT_FROM_10_TO_15,
                     price: this.price.WEIGHT_FROM_10_TO_15,
                     colors: this.colors,
@@ -89,7 +84,7 @@ export class Dpd implements ICourier {
 
             case w <= 20:
                 return {
-                    name: this.name as string,
+                    logo: this.logo,
                     description: this.description.WEIGHT_FROM_15_TO_20,
                     price: this.price.WEIGHT_FROM_15_TO_20,
                     colors: this.colors,
@@ -97,7 +92,7 @@ export class Dpd implements ICourier {
 
             case w <= 25:
                 return {
-                    name: this.name as string,
+                    logo: this.logo,
                     description: this.description.WEIGHT_FROM_20_TO_25,
                     price: this.price.WEIGHT_FROM_20_TO_25,
                     colors: this.colors,
@@ -105,7 +100,7 @@ export class Dpd implements ICourier {
 
             case w <= 31.5:
                 return {
-                    name: this.name as string,
+                    logo: this.logo,
                     description: this.description.WEIGHT_FROM_25_TO_31,
                     price: this.price.WEIGHT_FROM_25_TO_31,
                     colors: this.colors,

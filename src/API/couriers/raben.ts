@@ -4,9 +4,10 @@ import { longestSide } from "../../utils/longestSide";
 import { prices } from "../prices";
 import { config } from "../../config";
 import { withTolerance } from "../../utils/withTolerance";
+import { logos } from "../../assets/logos";
 
 export class Raben implements ICourier {
-    name: string;
+    logo: string;
     description: {
         [key: string]: string;
     };
@@ -16,7 +17,7 @@ export class Raben implements ICourier {
     colors: TColors;
 
     constructor() {
-        this.name = "Raben";
+        this.logo = logos.raben;
         this.description = {
             HALF_PALLET: "półpaleta (80 x 60)",
             STANDARD_PALLET: "paleta standardowa (120 x 80)",
@@ -25,10 +26,7 @@ export class Raben implements ICourier {
             MODUL_150_X_160: "moduł (150 x 160)",
         };
         this.price = prices.raben;
-        this.colors = {
-            bgColor: "#fff",
-            fontColor: "#d8001f",
-        };
+        this.colors = { font: "#d8001f" };
     }
 
     calculatePrice(weight: string, sideA: string, sideB: string, sideC: string): ISuitableCourier | null {
@@ -54,7 +52,7 @@ export class Raben implements ICourier {
                 (shortSides[0] <= config.halfPalletDimensions.length ||
                     shortSides[1] <= config.halfPalletDimensions.length):
                 return {
-                    name: this.name as string,
+                    logo: this.logo,
                     description: this.description.HALF_PALLET,
                     price: this.price.HALF_PALLET,
                     colors: this.colors,
@@ -67,7 +65,7 @@ export class Raben implements ICourier {
                 (shortSides[0] <= config.standardPalletDimensions.width ||
                     shortSides[1] <= config.standardPalletDimensions.width):
                 return {
-                    name: this.name as string,
+                    logo: this.logo,
                     description: this.description.STANDARD_PALLET,
                     price: this.price.STANDARD_PALLET,
                     colors: this.colors,
@@ -80,7 +78,7 @@ export class Raben implements ICourier {
                 (shortSides[0] <= config.standardPalletDimensions.width ||
                     shortSides[1] <= config.standardPalletDimensions.width):
                 return {
-                    name: this.name as string,
+                    logo: this.logo,
                     description: this.description.MODUL_150_X_80,
                     price: this.price.MODUL_150_X_80,
                     colors: this.colors,
@@ -92,7 +90,7 @@ export class Raben implements ICourier {
                 shortSides[1] <= 120 &&
                 (shortSides[0] <= 100 || shortSides[1] <= 100):
                 return {
-                    name: this.name as string,
+                    logo: this.logo,
                     description: this.description.MODUL_120_X_100,
                     price: this.price.MODUL_120_X_100,
                     colors: this.colors,
@@ -104,7 +102,7 @@ export class Raben implements ICourier {
                 shortSides[1] <= 160 &&
                 (shortSides[0] <= 150 || shortSides[1] <= 150):
                 return {
-                    name: this.name as string,
+                    logo: this.logo,
                     description: this.description.MODUL_150_X_160,
                     price: this.price.MODUL_150_X_160,
                     colors: this.colors,
