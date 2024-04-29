@@ -1,11 +1,12 @@
 import { anotherSides } from "../../utils/anotherSides";
 import { longestSide } from "../../utils/longestSide";
 import { prices } from "../prices";
-import { ICourier, ISuitableCourier, TColors, TCourierPrice } from "../../types/ICourier";
+import { ICourier, ISuitableCourier, TCourierPrice } from "../../types/ICourier";
 import { config } from "../../config";
 import { logos } from "../../assets/logos";
 
 export class Dhl implements ICourier {
+    name: string;
     logo: string;
     description: {
         [key: string]: string;
@@ -13,9 +14,9 @@ export class Dhl implements ICourier {
     price: {
         [key: string]: TCourierPrice;
     };
-    colors: TColors;
 
     constructor() {
+        this.name = "DHL";
         this.logo = logos.dhl;
         this.description = {
             WEIGHT_FROM_0_TO_5: "do 5 kg",
@@ -24,7 +25,6 @@ export class Dhl implements ICourier {
             WEIGHT_FROM_20_TO_31: "do 31,5 kg",
         };
         this.price = prices.dhl;
-        this.colors = { font: "#d40511" };
     }
 
     calculatePrice(weight: string, sideA: string, sideB: string, sideC: string): ISuitableCourier | null {
@@ -34,11 +34,11 @@ export class Dhl implements ICourier {
         const longest = longestSide(a, b, c);
 
         switch (true) {
-            // weight check (31.5)
+            // weight check
             case w > config.maxParcelWeight:
                 return null;
 
-            // longest side check (120)
+            // longest side check
             case longest > config.longestParcelSide.dhl:
                 return null;
 
@@ -49,37 +49,37 @@ export class Dhl implements ICourier {
             // weight check (0 - 5)
             case w <= 5:
                 return {
+                    name: this.name,
                     logo: this.logo,
                     description: this.description.WEIGHT_FROM_0_TO_5,
                     price: this.price.WEIGHT_FROM_0_TO_5,
-                    colors: this.colors,
                 };
 
             // weight check (5 - 10)
             case w > 5 && w <= 10:
                 return {
+                    name: this.name,
                     logo: this.logo,
                     description: this.description.WEIGHT_FROM_5_TO_10,
                     price: this.price.WEIGHT_FROM_5_TO_10,
-                    colors: this.colors,
                 };
 
             // weight check (10 - 20)
             case w > 10 && w <= 20:
                 return {
+                    name: this.name,
                     logo: this.logo,
                     description: this.description.WEIGHT_FROM_10_TO_20,
                     price: this.price.WEIGHT_FROM_10_TO_20,
-                    colors: this.colors,
                 };
 
             // weight check (5 - 10)
             case w > 20 && w <= 31.5:
                 return {
+                    name: this.name,
                     logo: this.logo,
                     description: this.description.WEIGHT_FROM_20_TO_31,
                     price: this.price.WEIGHT_FROM_20_TO_31,
-                    colors: this.colors,
                 };
 
             default:

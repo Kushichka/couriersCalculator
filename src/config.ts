@@ -18,10 +18,6 @@ export const config = {
         length: 120,
         width: 80,
     },
-    modulPalletDimensions: {
-        length: 400,
-        width: 240,
-    },
     maxPalletWeight: {
         half: 300,
         standard: 800,

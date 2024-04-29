@@ -22,11 +22,15 @@ export const ResultTableRow = () => {
                     height: "3rem",
                     fontSize: "1rem",
                     fontWeight: 600,
-                    color: item.colors.font,
                     borderColor: config.borderColor,
                 }}
             >
-                {item.logo && <CourierLogo src={item.logo} />}
+                {item.logo && (
+                    <CourierLogo
+                        src={item.logo}
+                        name={item.name}
+                    />
+                )}
             </TableCell>
             <TableCell
                 align="center"

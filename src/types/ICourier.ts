@@ -9,12 +9,10 @@ export type TLink = {
 
 export type TCourierPrice = TPrice | TLink;
 
-export type TColors = { font: string };
-
 export interface ISuitableCourier {
+    name: string;
     logo: string;
     price: TCourierPrice;
-    colors: TColors;
     description?: string;
 }
 
@@ -26,10 +24,10 @@ export type TCalculatePrice = (
 ) => ISuitableCourier | null;
 
 export interface ICourier {
+    name: string;
     logo: string;
     price: {
         [key: string]: TCourierPrice;
     };
-    colors: TColors;
     calculatePrice: TCalculatePrice;
 }

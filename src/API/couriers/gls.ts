@@ -2,12 +2,13 @@ import { anotherSides } from "../../utils/anotherSides";
 import { longestSide } from "../../utils/longestSide";
 import { isCustomParcelGls } from "../../utils/isCustomParcelGls";
 import { prices } from "../prices";
-import { ICourier, ISuitableCourier, TColors, TCourierPrice } from "../../types/ICourier";
+import { ICourier, ISuitableCourier, TCourierPrice } from "../../types/ICourier";
 import { config } from "../../config";
 import { getCustomPriceGls } from "../../utils/getCustomPriceGls";
 import { logos } from "../../assets/logos";
 
 export class Gls implements ICourier {
+    name: string;
     logo: string;
     description: {
         [key: string]: string;
@@ -15,9 +16,9 @@ export class Gls implements ICourier {
     price: {
         [key: string]: TCourierPrice;
     };
-    colors: TColors;
 
     constructor() {
+        this.name = "GLS";
         this.logo = logos.gls;
         this.description = {
             WEIGHT_FROM_0_TO_2: "do 2 kg",
@@ -30,7 +31,6 @@ export class Gls implements ICourier {
             CUSTOM_PARCEL: "paczka niestandardowa",
         };
         this.price = prices.gls;
-        this.colors = { font: "#ffffff" };
     }
 
     calculatePrice(weight: string, sideA: string, sideB: string, sideC: string): ISuitableCourier | null {
@@ -44,17 +44,17 @@ export class Gls implements ICourier {
             // custom parcel check
             case custom:
                 return {
+                    name: this.name,
                     logo: this.logo,
                     description: this.description.CUSTOM_PARCEL,
                     price: getCustomPriceGls(w),
-                    colors: this.colors,
                 };
 
-            // weight check (31.5)
+            // weight check
             case w > config.maxParcelWeight:
                 return null;
 
-            // longest side check (180)
+            // longest side check
             case longest > config.longestParcelSide.gls:
                 return null;
 
@@ -64,58 +64,58 @@ export class Gls implements ICourier {
 
             case w <= 2:
                 return {
+                    name: this.name,
                     logo: this.logo,
                     description: this.description.WEIGHT_FROM_0_TO_2,
                     price: this.price.WEIGHT_FROM_0_TO_2,
-                    colors: this.colors,
                 };
 
             case w <= 5:
                 return {
+                    name: this.name,
                     logo: this.logo,
                     description: this.description.WEIGHT_FROM_2_TO_5,
                     price: this.price.WEIGHT_FROM_2_TO_5,
-                    colors: this.colors,
                 };
 
             case w <= 10:
                 return {
+                    name: this.name,
                     logo: this.logo,
                     description: this.description.WEIGHT_FROM_5_TO_10,
                     price: this.price.WEIGHT_FROM_5_TO_10,
-                    colors: this.colors,
                 };
 
             case w <= 15:
                 return {
+                    name: this.name,
                     logo: this.logo,
                     description: this.description.WEIGHT_FROM_10_TO_15,
                     price: this.price.WEIGHT_FROM_10_TO_15,
-                    colors: this.colors,
                 };
 
             case w <= 20:
                 return {
+                    name: this.name,
                     logo: this.logo,
                     description: this.description.WEIGHT_FROM_15_TO_20,
                     price: this.price.WEIGHT_FROM_15_TO_20,
-                    colors: this.colors,
                 };
 
             case w <= 25:
                 return {
+                    name: this.name,
                     logo: this.logo,
                     description: this.description.WEIGHT_FROM_20_TO_25,
                     price: this.price.WEIGHT_FROM_20_TO_25,
-                    colors: this.colors,
                 };
 
             case w <= 31.5:
                 return {
+                    name: this.name,
                     logo: this.logo,
                     description: this.description.WEIGHT_FROM_25_TO_31,
                     price: this.price.WEIGHT_FROM_25_TO_31,
-                    colors: this.colors,
                 };
 
             default:
