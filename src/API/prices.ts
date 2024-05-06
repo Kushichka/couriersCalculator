@@ -55,7 +55,7 @@ export const prices: IPrices = {
     },
     schenker: {
         CHECK_PRICE: {
-            link: "https://docs.google.com/spreadsheets/d/1qMCcBj0Y7zvZS_L0X_Txp04p9Fng0qJc7eu845X5BFk/edit#gid=1203923558",
+            link: "https://docs.google.com/spreadsheets/d/1ufziQ6XdjxC1g1JW3z58zgPeVuZ7srNn9GH214HvA_Q/edit?usp=sharing",
         },
     },
     raben: {

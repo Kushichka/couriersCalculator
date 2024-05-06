@@ -37,12 +37,6 @@ export const getCustomPriceDpd = (
         price = prices.dpd.WEIGHT_FROM_31_TO_40_CUSTOM;
     } else if (targetWeight <= 50) {
         price = prices.dpd.WEIGHT_FROM_40_TO_50_CUSTOM;
-    } else {
-        price = {
-            // temporary solution
-            standard: "1111",
-            onDelivery: "1111",
-        };
     }
 
     const standardNumber = parseFloat("standard" in price ? price.standard.replace(",", ".") : "0");
