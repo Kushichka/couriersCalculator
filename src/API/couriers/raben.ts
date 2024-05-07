@@ -46,7 +46,7 @@ export class Raben implements ICourier {
             case longest > config.maxPalletPayloadHeight:
                 return null;
 
-            // half pallet check (185 x 80 x 60)
+            // half pallet check (185 x 80 x 60) tolerance length and width 10% (0 x 8cm x 6cm)
             case w <= config.maxPalletWeight.half &&
                 shortSides[0] <= withTolerance(config.halfPalletDimensions.width, palletTolerance) &&
                 shortSides[1] <= withTolerance(config.halfPalletDimensions.width, palletTolerance) &&
@@ -59,12 +59,12 @@ export class Raben implements ICourier {
                     price: this.price.HALF_PALLET,
                 };
 
-            // standard pallet check (185 x 120 x 80)
+            // standard pallet check (185 x 120 x 80) tolerance length and width 5% (0 x 6cm x 4cm)
             case w <= config.maxPalletWeight.standard &&
-                shortSides[0] <= withTolerance(config.standardPalletDimensions.length, palletTolerance) &&
-                shortSides[1] <= withTolerance(config.standardPalletDimensions.length, palletTolerance) &&
-                (shortSides[0] <= withTolerance(config.standardPalletDimensions.width, palletTolerance) ||
-                    shortSides[1] <= withTolerance(config.standardPalletDimensions.width, palletTolerance)):
+                shortSides[0] <= withTolerance(config.standardPalletDimensions.length, config.tolerance) &&
+                shortSides[1] <= withTolerance(config.standardPalletDimensions.length, config.tolerance) &&
+                (shortSides[0] <= withTolerance(config.standardPalletDimensions.width, config.tolerance) ||
+                    shortSides[1] <= withTolerance(config.standardPalletDimensions.width, config.tolerance)):
                 return {
                     name: this.name,
                     logo: this.logo,
@@ -72,12 +72,12 @@ export class Raben implements ICourier {
                     price: this.price.STANDARD_PALLET,
                 };
 
-            // modul pallet check (185 x 150 x 80)
+            // modul pallet check (185 x 150 x 80) tolerance length and width 5% (0 x 7.5cm x 4cm)
             case w <= config.maxPalletWeight.modul &&
-                shortSides[0] <= withTolerance(150, palletTolerance) &&
-                shortSides[1] <= withTolerance(150, palletTolerance) &&
-                (shortSides[0] <= withTolerance(config.standardPalletDimensions.width, palletTolerance) ||
-                    shortSides[1] <= withTolerance(config.standardPalletDimensions.width, palletTolerance)):
+                shortSides[0] <= withTolerance(150, config.tolerance) &&
+                shortSides[1] <= withTolerance(150, config.tolerance) &&
+                (shortSides[0] <= withTolerance(config.standardPalletDimensions.width, config.tolerance) ||
+                    shortSides[1] <= withTolerance(config.standardPalletDimensions.width, config.tolerance)):
                 return {
                     name: this.name,
                     logo: this.logo,
@@ -85,12 +85,12 @@ export class Raben implements ICourier {
                     price: this.price.MODUL_150_X_80,
                 };
 
-            // modul pallet check (185 x 120 x 100)
+            // modul pallet check (185 x 120 x 100) tolerance length and width 5% (0 x 6cm x 5cm)
             case w <= config.maxPalletWeight.modul &&
-                shortSides[0] <= withTolerance(120, palletTolerance) &&
-                shortSides[1] <= withTolerance(120, palletTolerance) &&
-                (shortSides[0] <= withTolerance(100, palletTolerance) ||
-                    shortSides[1] <= withTolerance(100, palletTolerance)):
+                shortSides[0] <= withTolerance(120, config.tolerance) &&
+                shortSides[1] <= withTolerance(120, config.tolerance) &&
+                (shortSides[0] <= withTolerance(100, config.tolerance) ||
+                    shortSides[1] <= withTolerance(100, config.tolerance)):
                 return {
                     name: this.name,
                     logo: this.logo,
@@ -98,12 +98,12 @@ export class Raben implements ICourier {
                     price: this.price.MODUL_120_X_100,
                 };
 
-            // modul pallet check (185 x 160 x 150)
+            // modul pallet check (185 x 160 x 150) tolerance length and width 5% (0 x 8cm x 7.5cm)
             case w <= config.maxPalletWeight.modul &&
-                shortSides[0] <= withTolerance(160, palletTolerance) &&
-                shortSides[1] <= withTolerance(160, palletTolerance) &&
-                (shortSides[0] <= withTolerance(150, palletTolerance) ||
-                    shortSides[1] <= withTolerance(150, palletTolerance)):
+                shortSides[0] <= withTolerance(160, config.tolerance) &&
+                shortSides[1] <= withTolerance(160, config.tolerance) &&
+                (shortSides[0] <= withTolerance(150, config.tolerance) ||
+                    shortSides[1] <= withTolerance(150, config.tolerance)):
                 return {
                     name: this.name,
                     logo: this.logo,
