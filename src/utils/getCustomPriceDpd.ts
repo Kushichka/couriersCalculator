@@ -43,8 +43,8 @@ export const getCustomPriceDpd = (
     const onDeliveryNumber = parseFloat("onDelivery" in price ? price.onDelivery.replace(",", ".") : "0");
 
     // formula for DPD custom parcels
-    const standardPrice = standardNumber * 1.36 + 15.09 * 1.23;
-    const onDeliveryPrice = onDeliveryNumber * 1.36 + 15.09 * 1.23;
+    const standardPrice = (standardNumber * 1.36 + 15.09) * 1.23;
+    const onDeliveryPrice = (onDeliveryNumber * 1.36 + 15.09) * 1.23;
 
     return {
         standard: standardPrice.toFixed(2).replace(".", ","),
