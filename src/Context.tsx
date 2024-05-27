@@ -39,7 +39,16 @@ export const ContextProvider = ({ children }) => {
     }, []);
 
     useEffect(() => {
-        if (weight && sideA && sideB && sideC) {
+        if (
+            weight &&
+            sideA &&
+            sideB &&
+            sideC &&
+            parseFloat(weight) !== 0 &&
+            parseFloat(sideA) !== 0 &&
+            parseFloat(sideB) !== 0 &&
+            parseFloat(sideC) !== 0
+        ) {
             calculateSuitableCouriers(weight, sideA, sideB, sideC, changeSuitableCouriers);
         } else changeSuitableCouriers([]);
     }, [weight, sideA, sideB, sideC, changeSuitableCouriers]);
