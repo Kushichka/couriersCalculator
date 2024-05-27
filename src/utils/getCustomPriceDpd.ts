@@ -11,6 +11,7 @@ export const getCustomPriceDpd = (
     const gabariteWeight = getGabariteWeight(sideA, sideB, sideC);
     const isGabarite = gabariteWeight > weight;
     const targetWeight = isGabarite ? gabariteWeight : weight;
+    const fuelSurcharge = weight <= 20 ? 1.235 : 1.275; // 23.5% or 27.5%
 
     console.log(gabariteWeight);
 
@@ -43,8 +44,16 @@ export const getCustomPriceDpd = (
     const onDeliveryNumber = parseFloat("onDelivery" in price ? price.onDelivery.replace(",", ".") : "0");
 
     // formula for DPD custom parcels
-    const standardPrice = (standardNumber * 1.36 + 15.09) * 1.23;
-    const onDeliveryPrice = (onDeliveryNumber * 1.36 + 15.09) * 1.23;
+    const standardPrice = (standardNumber * fuelSurcharge + 15.09) * 1.23;
+    const onDeliveryPrice = (onDeliveryNumber * fuelSurcharge + 15.09) * 1.23;
+
+    // temporary solution
+    if (isNaN(standardPrice) || isNaN(onDeliveryPrice)) {
+        return {
+            standard: "Brak",
+            onDelivery: "Brak",
+        };
+    }
 
     return {
         standard: standardPrice.toFixed(2).replace(".", ","),
