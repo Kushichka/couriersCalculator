@@ -6,4 +6,5 @@ export const logos = {
     pocztex: new URL("./pocztex.svg", import.meta.url).href,
     raben: new URL("./raben.svg", import.meta.url).href,
     schenker: new URL("./schenker.svg", import.meta.url).href,
+    ambro: new URL("./ambro.svg", import.meta.url).href,
 };

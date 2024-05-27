@@ -4,6 +4,7 @@ import { ICourier, ISuitableCourier, TCourierPrice } from "../../types/ICourier"
 import { config } from "../../config";
 import { getCustomPriceGls } from "../../utils/getCustomPriceGls";
 import { logos } from "../../assets/logos";
+import { longestSide } from "../../utils/longestSide";
 
 export class Gls implements ICourier {
     name: string;
@@ -34,6 +35,7 @@ export class Gls implements ICourier {
     calculatePrice(weight: string, sideA: string, sideB: string, sideC: string): ISuitableCourier | null {
         const [w, a, b, c] = [weight, sideA, sideB, sideC].map(parseFloat);
 
+        const longest = longestSide(a, b, c);
         const custom = isCustomParcelGls(a, b, c);
 
         switch (true) {
@@ -49,6 +51,9 @@ export class Gls implements ICourier {
                     description: this.description.CUSTOM_PARCEL,
                     price: getCustomPriceGls(w),
                 };
+
+            case longest > config.longestParcelSide.gls:
+                return null;
 
             case w <= 2:
                 return {

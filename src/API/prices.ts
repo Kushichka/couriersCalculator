@@ -65,4 +65,10 @@ export const prices: IPrices = {
         MODUL_120_X_100: { standard: "175,34", onDelivery: "Brak" },
         MODUL_150_X_160: { standard: "350,69", onDelivery: "Brak" },
     },
+    ambro: {
+        barrel: {
+            standard: "Brak",
+            onDelivery: "Brak",
+        },
+    },
 };

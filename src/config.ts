@@ -6,6 +6,7 @@ export const config = {
         gls: 180,
         inpostPaczkomat: 63,
         pocztex: 120,
+        ambro: 200, // Gab20
     },
     maxParcelLength: 180, // max parcel length (GLS)
     maxParcelWeight: 31.5, // max parcel weight
