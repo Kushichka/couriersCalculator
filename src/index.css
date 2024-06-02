@@ -6,4 +6,10 @@
 
 body {
     background-color: #8d99ae;
+    font-family: "Roboto", sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: #edf2f4;
 }

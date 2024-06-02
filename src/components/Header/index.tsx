@@ -2,7 +2,7 @@ import React, { memo } from "react";
 import { Box, Container } from "@mui/material";
 
 import { Logo } from "../ui/Logo";
-// import { MessageButton } from "../ui/MessageButton";
+import { Link } from "react-router-dom";
 
 export const Header = memo(() => {
     return (
@@ -18,9 +18,17 @@ export const Header = memo(() => {
                 <Box
                     display="flex"
                     justifyContent="space-between"
+                    alignContent="center"
                 >
-                    <Logo />
-                    {/* <MessageButton /> */}
+                    <Link to="/">
+                        <Logo />
+                    </Link>
+                    <Box
+                        display="flex"
+                        alignItems="center"
+                    >
+                        <Link to="info">Regulamin</Link>
+                    </Box>
                 </Box>
             </Container>
         </Box>
